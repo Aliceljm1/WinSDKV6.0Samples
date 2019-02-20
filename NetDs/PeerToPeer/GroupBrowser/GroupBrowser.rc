@@ -1,0 +1,258 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 443, 306
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | 
+    WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Group Browser"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,7,7,142,282
+    CONTROL         "",IDC_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | 
+                    LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,152,7,284,282
+END
+
+IDD_CreateIdentity DIALOGEX 0, 0, 255, 82
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Create New Identity"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDT_FRIENDLYNAME,121,15,127,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_INV_LOCATION,121,36,127,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,68,61,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,136,61,50,14
+    LTEXT           "Identity Friendly Name:",IDC_STATIC_FRIENDLY_NAME,16,18,
+                    76,8
+    LTEXT           "Identity Classifier (optional):",
+                    IDC_STATIC_IDENTITYCLASSIFIER,16,39,92,8
+END
+
+IDD_CREATENEWGROUP DIALOGEX 0, 0, 292, 121
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Create New Group"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDT_GROUPNAME,123,17,152,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_CLOUDLIST,123,37,152,53,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDT_CLASSIFIER,123,55,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_COMMENT,123,75,152,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,83,100,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,159,100,50,14
+    LTEXT           "Group Comment (optional):",IDC_STATIC_GROUPCLASSIFIER2,
+                    16,76,88,8
+    LTEXT           "Group Classifier (optional):",
+                    IDC_STATIC_GROUPCLASSIFIER,16,58,86,8
+    LTEXT           "Group Cloud:",IDC_STATIC_GROUP_CLOUD,16,38,107,10
+    LTEXT           "Group Friendly Name:",IDC_STATIC_GROUPNAME,16,20,70,8
+END
+
+IDD_SAVEIDENTITYINFO DIALOGEX 0, 0, 300, 86
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Save Identity Information"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDT_LOCATION,15,31,210,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BTN_BROWSE,236,31,50,14
+    DEFPUSHBUTTON   "OK",IDOK,88,57,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,160,57,50,14
+    LTEXT           "Save Identity Information to:",
+                    IDC_STATIC_INVITATIONLOCATION,16,18,95,8
+END
+
+IDD_CREATEINVITATION DIALOGEX 0, 0, 300, 113
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Create an Invitation"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDT_IDENT_LOCATION,15,28,210,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BTN_IDENT_BROWSE,235,28,50,14
+    EDITTEXT        IDC_EDT_INV_LOCATION,15,60,210,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BTN_INV_BROWSE2,235,60,50,14
+    DEFPUSHBUTTON   "OK",IDOK,91,84,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,159,84,50,14
+    LTEXT           "Load Identity Information from:",
+                    IDC_STATIC_IDENTITYLOCATION,16,17,114,8
+    LTEXT           "Save Invitation Information to:",
+                    IDC_STATIC_INVITATIONLOCATION,16,49,116,8
+END
+
+IDD_ABOUT1 DIALOGEX 0, 0, 299, 65
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About Group Browser"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Group Browser Version 1.0",IDC_STATIC_VERSION,43,15,107,
+                    8,SS_NOPREFIX
+    LTEXT           "Copyright (c) Microsoft Corporation.  All rights reserved.",
+                    IDC_STATIC_COPYRIGHT,43,29,191,8
+    DEFPUSHBUTTON   "OK",IDOK,242,44,50,14
+    ICON            GroupBrowserIcon,GroupBrowserIcon,7,14,20,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 298
+    END
+
+    IDD_CreateIdentity, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 75
+    END
+
+    IDD_CREATENEWGROUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 285
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 114
+    END
+
+    IDD_SAVEIDENTITYINFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 79
+    END
+
+    IDD_CREATEINVITATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 106
+    END
+
+    IDD_ABOUT1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 292
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       109
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Refresh",                    ID_VIEW_REFRESH
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                      ID_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+GroupBrowserIcon        ICON                    "GroupBrowser.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resrc1.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

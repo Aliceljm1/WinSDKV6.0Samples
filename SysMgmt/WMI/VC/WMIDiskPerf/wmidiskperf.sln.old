@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WMIDiskPerf", "wmidiskperf.vcproj", "{054198CE-2986-45F5-A4D7-4285D82325DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{054198CE-2986-45F5-A4D7-4285D82325DE}.Debug.ActiveCfg = Debug|Win32
+		{054198CE-2986-45F5-A4D7-4285D82325DE}.Debug.Build.0 = Debug|Win32
+		{054198CE-2986-45F5-A4D7-4285D82325DE}.Release.ActiveCfg = Release|Win32
+		{054198CE-2986-45F5-A4D7-4285D82325DE}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

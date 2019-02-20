@@ -1,0 +1,1 @@
+This sample demonstrates how to use the monitor configuration functions.

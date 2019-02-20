@@ -1,0 +1,74 @@
+<html>
+<title>Group Chat</title>
+<body bgcolor="#FFFFFF">
+
+<font face="Arial">
+
+<H1>Group Chat</H1>
+
+To Build: run "nmake" or launch the .sln file in Visual Studio .Net
+<hr>
+
+<H3>Using the Group Chat Sample Application</H3>
+
+
+</b>The Group Chat Sample Application demonstrates how to create a chat 
+application based on the Peer-to-Peer Grouping and Identity Manager API.&nbsp; 
+In order to use Group Chat the following steps must be followed:</p>
+<p><b>1. Creating a Peer Identity for each user, and saving this information</b><br>
+In the Group Chat sample application, a user can generate an identity by 
+selecting the &quot;Create…&quot; option on the &quot;Identity&quot; menu.&nbsp; The resulting 
+dialog box prompts the user for the friendly name (in this case the &quot;chat name&quot;) 
+that will be associated with the new identity<span style="font-size: 12.0pt">.&nbsp; 
+Before a group can be created, an identity associated with the group creator 
+needs to be created.</span></p>
+<p><b>2. Creating a group that will host the chat participants</b><br>
+<span style="font-size: 12.0pt">Once the group owner has an identity, a group is 
+created by selecting the &quot;Create…&quot; option on the &quot;Group&quot; menu. The resulting 
+dialog prompts the user for the identity of the group creator, as well as the 
+name of the group to be created and associated with the chosen identity.&nbsp;
+</span></p>
+<p><b>3. Creating participants’ identity information files for invitations</b><i><br>
+</i>Once the chat group has been created, chat members can solicit the group 
+owner for invitations to join the group. An invitation consists of an XML data 
+string derived from a unique identity (as created in step 1).&nbsp; An 
+invitation is thus exclusively bound to a particular identity.&nbsp; The group 
+owner uses the Peer-to-Peer Grouping API to generate an invitation from an 
+identity and then returns this invitation to the user requesting permission to 
+join the group.</p>
+<p>Users that wish to join the chat group create user identities the same way 
+that the group owner identity is created, using the &quot;Create…&quot; option on 
+&quot;Identity&quot; menu. The &quot;Identity&quot; menu also allows the user to save this identity 
+information to a file.&nbsp; This file is then sent out of band of the 
+peer-to-peer infrastructure to the group owner, who creates the corresponding 
+invitation.</p>
+<p><b>4. Creating the invitations to join the group to chat</b><i><br>
+</i>Once the group owner receives a file containing a user’s identity 
+information, they can create a file containing an invitation to join the group 
+using the Create Invitation… item on the Group menu. Selecting this option 
+opens the Create Invitation dialog, which prompts the user to specify the 
+location of the identity information (.idt) file, as well as the destination of 
+the invitation information (.inv) file.&nbsp; The invitation file is then sent 
+out of band of the peer-to-peer infrastructure to the requesting individual.</p>
+<p>It is important to note that invitations created with the Group Chat 
+application demonstrate how to create invitations for the &quot;Member&quot; role.&nbsp; A 
+group participant with a member role cannot issue invitations.&nbsp; Only 
+participants with &quot;Admin&quot; credentials can create invitations.&nbsp; For an 
+example of how to create &quot;Admin&quot; invitations, please see the Group Browser demo.</p>
+<p><b>5. Joining the Chat Group</b><span style="font-size: 12.0pt"><br>
+In order to join the chat group, a user needs to have a predefined identity as 
+well as the invitation file that corresponds to that identity.&nbsp; If these 
+two requirements are satisfied, the &quot;Join…&quot; option on the &quot;Group&quot; menu can be 
+used to join the group. Selecting this option opens the Join Group dialog, which 
+requires the user to select his identity and&nbsp; location of the invitation 
+(.inv) file. Pressing the &quot;Ok&quot; button initiates the join process.&nbsp; If this 
+is successful, the chat app will connect to the group and the chat user will be 
+online<b>.</b></span></p>
+<p><b>6. Whispering to other members<br>
+</b>To carry on a private conversation with another member, simply double-click 
+that member in the 'Chat Members' list.&nbsp; The following dialog will allow 
+the user to send a &quot;whisper&quot; message to the selected member.</p>
+
+
+</body>
+</html>

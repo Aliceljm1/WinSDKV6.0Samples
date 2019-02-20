@@ -1,0 +1,124 @@
+﻿<instrumentationManifest xmlns="http://schemas.microsoft.com/win/2004/08/events" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/win/2004/08/events eventman.xsd" xmlns:fib="http://manifests.microsoft.com/win/2004/08/fib/events" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events">
+    <instrumentation>
+        <events>
+            <provider name="ETWPhils" guid="{7d89fdc9-974b-4cc8-a8d9-eec0724216ed}" symbol="ETWPhilsGUID" resourceFileName="etwphils.exe" messageFileName="etwphils.exe">
+                <channels>
+                    <channel name="philschan" chid="philschan" symbol="philschan" type="Analytic" isolation="Application" />
+                </channels>
+                <keywords>
+                    <keyword name="DiscussAbort" symbol="DiscussAbort" mask="0x40" message="$(string.DiscussAbort.KeywordMessage)" />
+                </keywords>
+                <levels>
+                    <level name="PhilStatus" symbol="PhilStatus" value="17" message="$(string.PhilStatus.LevelMessage)" />
+                    <level name="PhilEat" symbol="PhilEat" value="20" message="$(string.PhilEat.LevelMessage)" />
+                    <level name="PhilThink" symbol="PhilThink" value="19" message="$(string.PhilThink.LevelMessage)" />
+                    <level name="PhilDisicuss" symbol="PhilDisicuss" value="18" message="$(string.PhilDisicuss.LevelMessage)" />
+                </levels>
+                <opcodes>
+                    <opcode name="PhilsInfoBegin" symbol="PhilsInfoBegin" value="84" message="$(string.PhilsInfoBegin.OpcodeMessage)" />
+                    <opcode name="PhilsInfoEnd" symbol="PhilsInfoEnd" value="48" message="$(string.PhilsInfoEnd.OpcodeMessage)" />
+                </opcodes>
+                <tasks>
+                    <task name="PhilsTask" symbol="PhilsTask" value="42" message="$(string.PhilsTask.TaskMessage)" />
+                </tasks>
+                <templates>
+                    <template message="$(string.tid_Creation.TemplateMessage)" tid="tid_Creation">
+                        <data name="Count" inType="win:UInt32" outType="xs:unsignedInt" />
+                    </template>
+                    <template message="$(string.tid_Destruction.TemplateMessage)" tid="tid_Destruction">
+                        <data name="Count" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="TotalMeals" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="TotalThoughts" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="TotalDiscussions" inType="win:UInt32" outType="xs:unsignedInt" />
+                    </template>
+                    <template message="$(string.tid_Arrive.TemplateMessage)" tid="tid_Arrive">
+                        <data name="Id" inType="win:UInt32" outType="xs:unsignedInt" />
+                    </template>
+                    <template message="$(string.tid_Leave.TemplateMessage)" tid="tid_Leave">
+                        <data name="Id" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Meals" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Thoughts" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Discussions" inType="win:UInt32" outType="xs:unsignedInt" />
+                    </template>
+                    <template message="$(string.tid_Eating.TemplateMessage)" tid="tid_Eating">
+                        <data name="Id" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Desc" inType="win:AnsiString" outType="xs:string" />
+                    </template>
+                    <template message="$(string.tid_Thinking.TemplateMessage)" tid="tid_Thinking">
+                        <data name="Id" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Thought" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Desc" inType="win:AnsiString" outType="xs:string" />
+                    </template>
+                    <template message="$(string.tid_Discussion.TemplateMessage)" tid="tid_Discussion">
+                        <data name="Id" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Count" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Lenght" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Desc" inType="win:AnsiString" outType="xs:string" />
+                    </template>
+                    <template message="$(string.tid_DiscussWait.TemplateMessage)" tid="tid_DiscussWait">
+                        <data name="Id" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Count" inType="win:UInt32" outType="xs:unsignedInt" />
+                        <data name="Desc" inType="win:AnsiString" outType="xs:string" />
+                        <data name="ActivityID" inType="win:GUID" outType="xs:GUID" />
+                    </template>
+                </templates>
+                <events>
+                    <event value="0" version="0" symbol="TableCreateEventDesc" template="tid_Creation" task="PhilsTask" opcode="win:Start" channel="philschan" level="PhilStatus" message="$(string.TableCreateEventDesc.EventMessage)" />
+                    <event value="1" version="0" symbol="TableDestroyEventDesc" template="tid_Destruction" task="PhilsTask" opcode="win:Stop" channel="philschan" level="PhilStatus" message="$(string.TableDestroyEventDesc.EventMessage)" />
+                    <event value="2" version="0" symbol="PhilArriveEventDesc" template="tid_Arrive" task="PhilsTask" opcode="win:Start" channel="philschan" level="PhilStatus" message="$(string.PhilArriveEventDesc.EventMessage)" />
+                    <event value="3" version="0" symbol="PhilLeaveEventDesc" template="tid_Leave" task="PhilsTask" opcode="win:Stop" channel="philschan" level="PhilStatus" message="$(string.PhilLeaveEventDesc.EventMessage)" />
+                    <event value="4" version="0" symbol="EatWaitEventDesc" template="tid_Eating" task="PhilsTask" opcode="PhilsInfoBegin" channel="philschan" level="PhilEat" message="$(string.EatWaitEventDesc.EventMessage)" />
+                    <event value="5" version="0" symbol="EatBeginEventDesc" template="tid_Eating" task="PhilsTask" opcode="PhilsInfoBegin" channel="philschan" level="PhilEat" message="$(string.EatBeginEventDesc.EventMessage)" />
+                    <event value="6" version="0" symbol="EatEndEventDesc" template="tid_Eating" task="PhilsTask" opcode="PhilsInfoEnd" channel="philschan" level="PhilEat" message="$(string.EatEndEventDesc.EventMessage)" />
+                    <event value="7" version="0" symbol="ThinkBeginEventDesc" template="tid_Thinking" task="PhilsTask" opcode="PhilsInfoBegin" channel="philschan" level="PhilThink" message="$(string.ThinkBeginEventDesc.EventMessage)" />
+                    <event value="8" version="0" symbol="ThinkEndEventDesc" template="tid_Thinking" task="PhilsTask" opcode="PhilsInfoEnd" channel="philschan" level="PhilThink" message="$(string.ThinkEndEventDesc.EventMessage)" />
+                    <event value="9" version="0" symbol="DiscussionBeginEventDesc" template="tid_Discussion" task="PhilsTask" opcode="PhilsInfoBegin" channel="philschan" level="PhilDisicuss" message="$(string.DiscussionBeginEventDesc.EventMessage)" />
+                    <event value="10" version="0" symbol="DiscussionEndEventDesc" template="tid_Creation" task="PhilsTask" opcode="PhilsInfoEnd" channel="philschan" level="PhilDisicuss" message="$(string.DiscussionEndEventDesc.EventMessage)" />
+                    <event value="11" version="0" symbol="DiscussionJoinEventDesc" template="tid_Discussion" task="PhilsTask" opcode="PhilsInfoBegin" channel="philschan" level="PhilDisicuss" message="$(string.DiscussionJoinEventDesc.EventMessage)" />
+                    <event value="12" version="0" symbol="DiscussionLeaveEventDesc" template="tid_Discussion" task="PhilsTask" opcode="PhilsInfoEnd" channel="philschan" level="PhilDisicuss" message="$(string.DiscussionLeaveEventDesc.EventMessage)" />
+                    <event value="13" version="0" symbol="DiscussWaitBeginEventDesc" template="tid_DiscussWait" task="PhilsTask" opcode="PhilsInfoBegin" channel="philschan" level="PhilDisicuss" message="$(string.DiscussWaitBeginEventDesc.EventMessage)" />
+                    <event value="14" version="0" symbol="DiscussWaitEndEventDesc" template="tid_DiscussWait" task="PhilsTask" opcode="PhilsInfoEnd" channel="philschan" level="PhilDisicuss" message="$(string.DiscussWaitEndEventDesc.EventMessage)" />
+                    <event value="15" version="0" symbol="DiscussWaitAbortEventDesc" template="tid_DiscussWait" task="PhilsTask" opcode="PhilsInfoEnd" channel="philschan" level="PhilDisicuss" keywords="DiscussAbort" message="$(string.DiscussWaitAbortEventDesc.EventMessage)" />
+                </events>
+            </provider>
+        </events>
+    </instrumentation>
+    <localization xmlns="http://schemas.microsoft.com/win/2004/08/events">
+        <resources culture="en-US">
+            <stringTable>
+                <string id="DiscussAbort.KeywordMessage" value="Discussion aborted due to timeout." />
+                <string id="PhilStatus.LevelMessage" value="Creation/Destruction Events" />
+                <string id="PhilEat.LevelMessage" value="Eating and Chopstick Events" />
+                <string id="PhilThink.LevelMessage" value="Thinking Events" />
+                <string id="PhilDisicuss.LevelMessage" value="Discussion Event" />
+                <string id="PhilsInfoBegin.OpcodeMessage" value="Philosopher Event Start Info" />
+                <string id="PhilsInfoEnd.OpcodeMessage" value="Philosopher Event Finish Info " />
+                <string id="PhilsTask.TaskMessage" value="ETW Philosophers" />
+                <string id="tid_Creation.TemplateMessage" value="The table is being created." />
+                <string id="tid_Destruction.TemplateMessage" value="The table is taken apart." />
+                <string id="tid_Arrive.TemplateMessage" value="A Philosopher arrives at the table." />
+                <string id="tid_Leave.TemplateMessage" value="A Philosopher leaves the table." />
+                <string id="tid_Eating.TemplateMessage" value="An Eating Event" />
+                <string id="tid_Thinking.TemplateMessage" value="A Thinking event" />
+                <string id="tid_Discussion.TemplateMessage" value="A Discussion Event" />
+                <string id="tid_DiscussWait.TemplateMessage" value="Waiting for a Descussion" />
+                <string id="TableCreateEventDesc.EventMessage" value="A table is created with %1 people." />
+                <string id="TableDestroyEventDesc.EventMessage" value="The table is destroyed. It was the source of %2 meals, %3 thoughts, and  %4 discussions for %1 philosophers." />
+                <string id="PhilArriveEventDesc.EventMessage" value="Philosopher %1 sits down at the table." />
+                <string id="PhilLeaveEventDesc.EventMessage" value="Philosopher %1 leaves the table after %2 meals, %3 thoughts, and %4 discussions." />
+                <string id="EatWaitEventDesc.EventMessage" value="Philosopher %1 is getting hungry." />
+                <string id="EatBeginEventDesc.EventMessage" value="Philosopher %1 begins eating." />
+                <string id="EatEndEventDesc.EventMessage" value="Philosopher %1 finishes eating." />
+                <string id="ThinkBeginEventDesc.EventMessage" value="Philosopher %1 begins thinking about %2." />
+                <string id="ThinkEndEventDesc.EventMessage" value="Philosopher %1 finishes thinking about %2." />
+                <string id="DiscussionBeginEventDesc.EventMessage" value="A discussion begins at the table between %2 philosophers." />
+                <string id="DiscussionEndEventDesc.EventMessage" value="The at the table between ends." />
+                <string id="DiscussionJoinEventDesc.EventMessage" value="Philosopher %1 begins having a discussion with %2 other philosopher(s)." />
+                <string id="DiscussionLeaveEventDesc.EventMessage" value="After talking for %3 minutes, %1 is finished with the discussion." />
+                <string id="DiscussWaitBeginEventDesc.EventMessage" value="Philosopher %1 is waiting for %2 other philosopher(s) to have a discussion with. " />
+                <string id="DiscussWaitEndEventDesc.EventMessage" value="Enough other philosophers are now ready to have a discussion with philosopher %1." />
+                <string id="DiscussWaitAbortEventDesc.EventMessage" value="Philosopher %1 gives up on waiting for %2 more philosophers. " />
+            </stringTable>
+        </resources>
+    </localization>
+</instrumentationManifest>

@@ -1,0 +1,27 @@
+// PreviewHandlerSDKSample.idl : IDL source for PreviewHandlerSDKSample
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (PreviewHandlerSDKSample.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "shobjidl.idl";
+
+[
+	uuid(4D4AE09B-2FC5-441E-AB61-8D49E5B8533F),
+	version(1.0),
+	helpstring("PreviewHandlerSDKSample 1.0 Type Library")
+]
+library PreviewHandlerSDKSampleLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(F654F1BF-54D9-4A2E-B703-889091D3CB2D),
+		helpstring("RecipePreviewHandler Class")
+	]
+	coclass RecipePreviewHandler
+	{
+		[default] interface IPreviewHandler;
+	};
+};

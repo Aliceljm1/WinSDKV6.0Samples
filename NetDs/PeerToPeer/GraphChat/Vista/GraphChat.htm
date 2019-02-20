@@ -1,0 +1,51 @@
+<html>
+<title>Graph Chat</title>
+<body bgcolor="#FFFFFF">
+
+<font face="Arial">
+
+<H1>Graph Chat</H1>
+<p>
+To Build: run "nmake" or launch the .sln file in Visual Studio .Net
+<hr>
+<H3>Using the Graph Chat Sample Application:</H3>
+
+The Graph Chat Sample Application demonstrates how to create a chat 
+application based on the Peer-to-Peer Graphing and Peer Name Resolution Protocol 
+(PNRP) Name Space Provider API.&nbsp; 
+In order to use Graph Chat the following steps must be followed:</font></p>
+<p><font face="Arial"><b>1. Create a graph to host the chat application<br>
+</b>In order to chat among peers, one peer must create the graph.&nbsp; To create a 
+graph, the user must select the &quot;New Graph...&quot;&nbsp;menu item. The user will 
+then be prompted with a dialog requesting a &quot;CreatorID&quot;.&nbsp; This ID will be 
+used in the Graph Properties, and as the user ID of the individual in the chat.&nbsp;
+</font></p>
+<p><font face="Arial">After the user has created a graph, the graph ID is 
+displayed in the main chat window.&nbsp; This graph ID will be what a remote 
+peer uses to open the graph (see step 2).&nbsp; In addition, this particular 
+graph endpoint is registered in PNRP for the duration of the application 
+lifetime.</font></p>
+<p><font face="Arial"><b>2. Open and connect to a graph to chat<br>
+</b>Once a graph is created, other peers can open the graph to start chatting.&nbsp; 
+In order to open an existing graph, select the &quot;Open Graph...&quot;.&nbsp;menu item. The user 
+will be prompted with a dialog requesting a Peer ID and Graph ID.&nbsp; The 
+PeerID will identify the individual in the graph.&nbsp; The Graph ID is the 
+identifier of the graph to connect to (ex. the identifier displayed in the main 
+chat window from step 1).</font></p>
+<p><font face="Arial">Once the user chooses to open the graph, the application 
+tries to resolve the Graph ID to an endpoint via PNRP.&nbsp; If a peer 
+publishing an instance of the graph is discovered, the graph connects, 
+synchronizes, and the user is now able to chat.</font></p>
+<p><font face="Arial">It is important to note, that once a peer has connected 
+and synchronized with a graph, it is registered in PNRP as a possible graph 
+endpoint.</font></p>
+
+<p><font face="Arial">
+
+<b>3. Whispering to other peers<br>
+</b>To carry on a private conversation with another peer, simply double-click 
+that member in the 'Chat Members' list.&nbsp; The following dialog will allow 
+the user to send a &quot;whisper&quot; message to the selected peer.</p>
+
+</body>
+</html>

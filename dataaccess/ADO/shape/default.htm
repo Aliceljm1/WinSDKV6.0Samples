@@ -1,0 +1,62 @@
+<!-- 
+ File:			default.htm
+ Description:	ADO 2.7 Sample Application
+				Using ADO and the Shape Provider
+ Copyright:		Copyright (c) 1991-2001 Microsoft Corporation
+-->
+
+<HTML>
+<HEAD>
+<TITLE>Using ADO and the Shape Provider</TITLE>
+</HEAD>
+<BODY>
+<LINK REL="STYLESHEET" HREF="..\ADOStyle.css">
+
+<H2>Using the Data Shape provider</H2>
+
+<H3>Sample Overview</H3>
+
+<P>ADO 2.7 includes the Data Shape Provider (MSDataShape). The Data Shape Provider can be used 
+to create hierarchical relationships between recordsets and to perform other shaping functions. </P>
+
+<P> The data shape provider accepts commands in the data shaping language. A typical shape command
+consists of a data provider command and a list of appended columns that the Data Shape provider 
+will add to the recordset returned by the data provider command.</P>
+
+The types of columns that the Data Shape provider can append to the data provider rowset include: 
+<UL type=disc>
+  <LI>Chapter columns. A chapter column creates a hierarchical relationship between this recordset 
+  and a child recordset.<BR> 
+
+  <LI>Aggregate columns. These columns are the result of performing an aggregate operation, such as SUM or COUNT on 
+  the child rows of this row.<BR>
+
+  <LI>CALC columns. CALC columns use the VB expression service to evaluate an expression over 
+  columns in this recordset.</LI>
+
+  <LI>NEW columns. NEW columns are fabricated columns that are initially NULL.</LI>
+</UL>
+
+<P>An example of a simple shape command that creates a two level hierarchy between an orders table and an order details table is:</P>
+
+<P>SHAPE {select * from Orders} APPEND ({select * from [Order Details]} RELATE OrderID TO OrderID)</P>
+
+<H3>Setup</H3>
+This sample application assumes you have already created the ADOSamp 
+VRoot as specified on the ADOSamp home page.
+
+<H3>Running the Sample:</H3>
+Follow the instructions below to run this sample.<BR>
+Enter "http://localhost/adosamp/shape/shape.asp" in your browser or click <A href="http://localhost/adosamp/shape/shape.asp">here</A> to run the Sample
+
+<H3>System Requirements</H3>
+This application requires the following system components to run.
+<UL>
+<LI>Microsoft Windows NT 4.0 or Windows 2000</LI>
+<LI>Microsoft Internet Information Services version 4.0 or 5.0</LI>
+<LI>Microsoft Visual Basic Scripting Edition</LI>
+<LI>SQL Server 7.0 or newer</LI>
+</UL>
+
+</BODY>
+</HTML>

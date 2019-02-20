@@ -1,0 +1,21 @@
+Windows Registry Editor Version 5.00
+
+#
+# The .recipe File Type and corresponding proplists to determine which properties are displayed by Explorer.
+#
+[HKEY_CLASSES_ROOT\Microsoft.SDKSamples.RecipeFile]
+@="Recipe File"
+"InfoTip"="prop:System.ItemType;System.Author;System.Rating;Microsoft.SampleRecipe.Difficulty"
+"FullDetails"="prop:System.PropGroup.Description;System.Title;System.Author;System.Comment;System.Keywords;System.Rating;Microsoft.SampleRecipe.Difficulty;System.PropGroup.FileSystem;System.ItemNameDisplay;System.ItemType;System.ItemFolderPathDisplay;System.Size;System.DateCreated;System.DateModified;System.DateAccessed;System.FileAttributes;System.OfflineAvailability;System.OfflineStatus;System.SharedWith;System.FileOwner;System.ComputerName"
+"PreviewDetails"="prop:System.DateChanged;System.Author;System.Keywords;Microsoft.SampleRecipe.Difficulty; System.Rating;System.Comment;System.Size;System.ItemFolderPathDisplay;System.DateCreated"
+"PreviewTitle"="prop:System.Title;System.ItemType"
+
+[HKEY_CLASSES_ROOT\.recipe]
+@="Microsoft.SDKSamples.RecipeFile"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.recipe]
+@="Recipe File"
+"InfoTip"="prop:System.ItemType;System.Author;System.Rating;Microsoft.SampleRecipe.Difficulty"
+"FullDetails"="prop:System.PropGroup.Description;System.Title;System.Author;System.Comment;System.Keywords;System.Rating;Microsoft.SampleRecipe.Difficulty;System.PropGroup.FileSystem;System.ItemNameDisplay;System.ItemType;System.ItemFolderPathDisplay;System.Size;System.DateCreated;System.DateModified;System.DateAccessed;System.FileAttributes;System.OfflineAvailability;System.OfflineStatus;System.SharedWith;System.FileOwner;System.ComputerName"
+"PreviewDetails"="prop:System.DateChanged;System.Author;System.Keywords;Microsoft.SampleRecipe.Difficulty; System.Rating;System.Comment;System.Size;System.ItemFolderPathDisplay;System.DateCreated"
+"PreviewTitle"="prop:System.Title;System.ItemType"

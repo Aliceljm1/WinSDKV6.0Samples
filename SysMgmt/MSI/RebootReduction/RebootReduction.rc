@@ -1,0 +1,16 @@
+//+-------------------------------------------------------------------------
+//
+//  Microsoft Windows
+//
+//  Copyright (C) Microsoft Corporation. All rights reserved.
+//
+//  File:       RebootReduction.rc
+//
+//--------------------------------------------------------------------------
+
+#define VER_ORIGINALFILENAME_STR "RebootReduction.exe"
+#define VER_FILETYPE             VFT_APP
+#define VER_FILEDESCRIPTION_STR  "Windows\256 Installer Reboot Reduction Sample"
+#define VER_INTERNALNAME_STR     "RebootReduction.exe"
+
+

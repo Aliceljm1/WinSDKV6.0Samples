@@ -1,0 +1,116 @@
+<instrumentationManifest>
+    <instrumentation>
+        <counters>
+            <provider providerName="CounterProviderSample"
+		      callback = "custom"
+                      applicationIdentity = "PerflibV2SampleProvider.exe"
+                      providerType = "userMode"
+                      providerGuid = "{ffeeddbb-965a-4cf9-9c07-fe25378c2a23}">
+                <counterSet    guid        = "{ffeeddbb-c923-4794-b696-70577630b5cf}"
+                               uri         = "Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet"
+                               name        = "$(string.Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.name)"
+                               description = "$(string.Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.description)"
+                               instances   = "multiple">
+                    <counter id           = "1"
+                             uri          = "Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter1"
+                             name         = "$(string.Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter1.name)"
+                             description  = "$(string.Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter1.description)"
+                             type         = "perf_counter_rawcount"
+                             detailLevel  = "standard">
+                    </counter>
+                    <counter id           = "2"
+                             uri          = "Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter2"
+                             name         = "$(string.Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter2.name)"
+                             description  = "$(string.Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter2.description)"
+                             type         = "perf_counter_rawcount"
+                             detailLevel  = "standard">
+                    </counter>
+                </counterSet>
+		<counterSet    guid        = "{ffeeddbb-eaa6-45ba-bf6d-4c7cb0d6ef73}"
+                               uri         = "Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet"
+                               name        = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.name)"
+                               description = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.description)"
+                               instances   = "single">
+                    <counter id           = "3"
+                             uri          = "Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter1"
+                             name         = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter1.name)"
+                             description  = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter1.description)"
+                             type         = "perf_counter_rawcount"
+                             detailLevel  = "standard">
+                        <counterAttributes>
+                            <counterAttribute name = "reference" />
+                        </counterAttributes>
+                    </counter>
+                    <counter id           = "4"
+                             uri          = "Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter2"
+                             name         = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter2.name)"
+                             description  = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter2.description)"
+                             type         = "perf_counter_rawcount"
+			     detailLevel  = "standard">
+                        <counterAttributes>
+                            <counterAttribute name = "reference" />
+                        </counterAttributes>
+                    </counter>
+                    <counter id           = "5"
+                             uri          = "Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter3"
+                             name         = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter3.name)"
+                             description  = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter3.description)"
+                             type         = "perf_counter_rawcount"
+                             detailLevel  = "standard"
+                             defaultScale = "1">
+                        <counterAttributes>
+                            <counterAttribute name = "reference" />
+                        </counterAttributes>
+                    </counter>
+                    <counter id           = "6"
+                             uri          = "Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter4"
+                             name         = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter4.name)"
+                             description  = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter4.description)"
+                             type         = "perf_raw_base"
+                             aggregate    = "max"
+                             detailLevel  = "standard">
+                       <counterAttributes>
+                            <counterAttribute name="noDisplay" />
+                        </counterAttributes>
+                    </counter>
+		    <counter id           = "7"
+                             uri          = "Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter5"
+                             name         = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter5.name)"
+                             description  = "$(string.Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter5.description)"
+                             type         = "perf_raw_fraction"
+                             baseID       = "6"
+                             detailLevel  = "standard">
+                        <counterAttributes>
+                            <counterAttribute name="reference" />
+                        </counterAttributes>
+                    </counter>
+                </counterSet>
+            </provider>
+        </counters>
+    </instrumentation>
+    <localization>
+        <resources culture="en-US">
+            <stringTable>
+                <string id="Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.name" value="TestMultiInstanceObject" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.description" value="This is a test CounterSet with multiple instances" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter1.name" value="Triangle Wave" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter1.description" value="Triangle Wave Help" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter2.name" value="Square Wave" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestMultiInstCounterSet.Counter2.description" value="Square Wave Help" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.name" value="TestSingleInstanceObject" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.description" value="This is a test CounterSet with one global instance" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter1.name" value="Sine Wave" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter1.description" value="Sine Wave Help" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter2.name" value="Cosine Wave" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter2.description" value="Cosine Wave Help" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter3.name" value="Constant Value" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter3.description" value="Constant Value Help" />
+`		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter4.name" value="Constant Number" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter4.description" value="Constant Number Help - Base Counter" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter5.name" value="Raw Fraction" />
+		<string id="Microsoft.Windows.System.PerfCounters.TestSingleInstCounterSet.Counter5.description" value="RawFraction ; Takes counter with ID = 6 as base counter" />
+
+            </stringTable>
+        </resources>
+    </localization>
+</instrumentationManifest>

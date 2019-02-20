@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TabletPCSetupSample", "TabletPCSetupSample.vdproj", "{C3070E0A-ADF8-4AC1-A736-73A918B6884E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3070E0A-ADF8-4AC1-A736-73A918B6884E}.Debug|Default.ActiveCfg = Debug
+		{C3070E0A-ADF8-4AC1-A736-73A918B6884E}.Debug|Default.Build.0 = Debug
+		{C3070E0A-ADF8-4AC1-A736-73A918B6884E}.Release|Default.ActiveCfg = Release
+		{C3070E0A-ADF8-4AC1-A736-73A918B6884E}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,110 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BITS Samples</title>
+<style>
+<!--
+body         { font-family: Tahoma; font-size: 10pt }
+-->
+</style>
+</head>
+
+<body>
+
+<h2>BITS PEERCACHING Sample</h2>
+<h3>Summary</h3>
+<p>This sample demonstrates the new BITS API in a program that downloads a file.</p>
+
+<p>BITS Peercaching is a new feature of BITS 3.0 that allows BITS to download 
+content from peers in the same subnet, rather than the origin server. This 
+feature can significantly reduce the load on the origin server. 
+
+<p>If a computer BITS has peercaching enabled, BITS creates a group of up to 100 
+peers that are in the same subnet and belong to the same domain (peers from a 
+trusted domain are not included in the neighborhood).
+When a job requests content from a peer, BITS randomly chooses 10 peers from the 
+peer group and asks them if they have the content. Since BITS can download 
+content only from authenticated peer servers, the client and server initially 
+authenticate each other using Kerberos, and exchange self-signed certificates 
+for authentication during content discovery and download. BITS downloads the 
+content from the first authenticated peer to respond to the request. If one peer 
+does not contain all the content, BITS can download the complete content from 
+multiple peers and the origin server. If none of the peers has the content or an 
+error occurs while downloading from a peer, BITS downloads the content from the 
+origin server.
+
+<p>The negotiation and security aspects of peer discovery are beyond the scope of 
+this sample. However, you will be able to see the results of the discovery using 
+this sample.</p>
+
+<h3>Program flow</h3>
+<p>This sample builds on the concepts established in the DOWNLOADS.cpp example, 
+it is recommended that you review DOWNLOADS.cpp prior to reviewing this sample – 
+it will aid understanding of the program flow.The key differences between the 
+two samples are:</p>
+<ul>
+	<li>Use <font face="Courier New">IBackgroundCopyManager</font> to obtain an
+	<font face="Courier New">IBitsPeerCacheAdministration</font> interface</li>
+	<li>Use <font face="Courier New">IBitsPeerCacheAdministration</font> to 
+	enumerate the Peers. </li>
+	<li>Add file transfer notifications</li>
+	<li>Obtain an IBackgroundCopyJob5 interface and use the new interface to 
+	allow HTTP Redirection and configure redirection notifications</li>
+</ul>
+<h3>Key Concepts </h3>
+<ul>
+	<li>Basic connection with BITS job manager and submission of BITS jobs </li>
+	<li>Looking at the peer neighborhood </li>
+	<li>Adding a file to the job </li>
+	<li>Registration of a job callback for special handling of errors and job 
+	states </li>
+	<li>Submission of download job </li>
+	<li>Processing notifications on completion. </li>
+	<li>Determining the download source </li>
+	<li>Use of BITS IBackgroundCopyManager </li>
+	<li>Use of BITS IBackgroundCopyJob(n) </li>
+	<li>Use of BITS IBitsPeerCacheAdministration </li>
+	<li>Use of BITS IBackgroundCopyJobHttpOptions </li>
+	<li>Use of BITS IEnumBitsPeers </li>
+	<li>Use of BITS IBitsPeer</li>
+</ul>
+<h3>Build/Configuration instructions</h3>
+<ul>
+	<li>Run &quot;VCBuild Peercaching&quot; in the directory where the sources are. Or, 
+	use Visual Studio to build the job. Optionally, the binaries are provided. 
+	</li>
+	<li>Execute PEERCACHING.exe. <br>
+&nbsp;</li>
+</ul>
+<h3>Basic Usage</h3>
+<ul>
+	<li>Select a file on a remote computer that your test machine has access to. 
+	</li>
+	<li>Select a location and name for the downloaded file to occupy on the test 
+	machine. </li>
+	<li>Enter the command PEERCACHING.exe &lt;RemoteName&gt; &lt;LocalName&gt; </li>
+	<li>Note that before the job is resumed, a list of neighboring peers is 
+	displayed. </li>
+	<li>When the download completes or fails, you will be notified. </li>
+	<li>As each file in the download completes transfer, the source of the 
+	download is shown. </li>
+	<li>Once you have successfully executed the download, move to another test 
+	machine and repeat the process. If you have correctly configured your peer 
+	caching options using group policy, you will see the results as downloads 
+	are redirected to peers, offloading work from the server. </li>
+</ul>
+<h3><br>
+System configuration</h3>
+<ul>
+	<li>To be able to compile the samples, the Windows Vista SDK must be 
+	installed. </li>
+	<li>The sample code requires BITS 3.0 which is available as part of Windows 
+	Vista, or Windows codename Longhorn Server. <br>
+	<br>
+&nbsp;</li>
+</ul>
+
+</body>
+
+</html>

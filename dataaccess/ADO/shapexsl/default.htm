@@ -1,0 +1,57 @@
+<!-- 
+ File:		default.htm
+ Description:	ADO 2.7 Sample Application
+		Hierarchical Results Using ADO, XML and XSL.
+ Copyright:	Copyright (c) 1991-2000 Microsoft Corporation
+-->
+
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE>Sales Analysis Using XML and XSL</TITLE>
+</HEAD>
+<BODY>
+<LINK REL="STYLESHEET" HREF="..\ADOStyle.css">
+<H2>Sales Analysis Using XML and XSL</H2>
+<P/>
+
+<H3>Sample Overview</H3>
+
+This sample has six key pages:
+<UL>
+<LI><B>ShapeXSL.htm</B> - The start page of the sample - a simple HTML form.</LI>
+<LI><B>OrdersProcess.asp</B> - This page is the target of the form's POST request.  It 
+processes the form variables and submits an SQL query to one of the following two pages 
+(depending on the user input)</LI>
+<LI><B>OrdersToTableServer.asp</B> - This page takes the incoming SQL query, submits it to SQL 
+Server, and gets the XML results back in an ADO Stream object.  It runs this XML through an XSL 
+transform using server-side script to create an HTML table, and outputs this table to the returned 
+page.</LI>
+<LI><B>OrdersToTableClient.asp</B> - This page takes the incoming SQL query, submits it to SQL 
+Server, and gets the XML results back in an ADO Stream object.  It sends this XML back as a Data 
+Island to the client browser, which then uses client-side script to run the XML through an XSL 
+transform to create an HTML table.</LI>
+<LI><B>TableFromXMLHier.xsl</B> - XSL transformation of a SQL Server 2000 FOR XML AUTO 
+format two-level XML hierarchy into an HTML table.</LI>
+<LI><B>Default.htm</B> - This page</LI>
+</UL>
+
+<H3>Setup</H3>
+This sample application assumes you have already created the ADOSamp 
+VRoot as specified on the ADOSamp home page.
+
+<H3>Running the Sample:</H3>
+Enter the following URL: http://localhost/adosamp/shapexsl/shapexsl.htm in your browser or click 
+<a href="http://localhost/adosamp/shapexsl/shapexsl.htm"> here </a>to run the Sample.<BR>
+Fill out the form, and click the 'Get Data' button.
+
+<H3>System Requirements</H3>
+This application requires the following system components to run.
+<UL>
+<LI>Microsoft Windows NT 4.0 or Windows 2000</LI>
+<LI>Microsoft Internet Information Services version 4.0 or 5.0</LI>
+<LI>SQL Server 2000</LI>
+</UL>
+
+</BODY>
+</HTML>

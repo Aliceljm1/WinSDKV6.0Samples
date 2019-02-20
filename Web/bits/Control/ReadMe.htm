@@ -1,0 +1,69 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BITS CONTROLS Sample</title>
+<style>
+<!--
+body         { font-family: Tahoma; font-size: 10pt }
+-->
+</style>
+</head>
+
+<body>
+
+<h2>BITS CONTROLS Sample </h2>
+<h3>Summary</h3>
+<p>This sample demonstrates the usage of BITS APIs to control and configure BITS 
+options. </p>
+<h3>Program flow</h3>
+<p>CONTORL.cpp builds on the concepts established in the DOWNLOADS.cpp 
+example, it is recommended that you review DOWNLOADS.cpp prior to reviewing this 
+sample – it will aid understanding of the program flow. 
+</p>
+<p>The key difference 
+between the two samples is the use of BITS APIs to enable peer caching and to 
+set a minimum size for a cache on the test machine (to act as server to other 
+peers).</p>
+<h3>Key Concepts </h3>
+<ul>
+	<li>Basic connection with BITS job manager and submission of BITS jobs </li>
+	<li>Adding a file to the job</li>
+	<li>Registration of a job callback for special handling of errors and job 
+	states </li>
+	<li>Submission of CONTROL job</li>
+	<li>Processing notifications on completion.</li>
+	<li>Use of BITS IBackgroundCopyManager</li>
+	<li>Use of BITS IBackgroundCopyJob(n)</li>
+	<li>Use of BITS IBitsPeerCacheAdministration</li>
+</ul>
+<h3>Build/Configuration instructions</h3>
+<ul>
+	<li>Run &quot;VCBuild CONTROL&quot; in the directory where the sources are. Or, use 
+	Visual Studio to build the job. Optionally, the binaries are provided. </li>
+	<li>Execute CONTROL.exe. <br>
+&nbsp;</li>
+</ul>
+<h3>Basic Usage</h3>
+<ol>
+	<li>Select a file on a remote computer that your test machine has access to.</li>
+	<li>Select a location and name for the downloaded file to occupy on the test 
+	machine.</li>
+	<li>Enter the command CONTROL.exe &lt;RemoteName&gt; &lt;LocalName&gt;</li>
+	<li>When the CONTROL completes or fails, you will be notified.</li>
+	<li>Use the command: bitsadmin /cache /list /verbose to see what files are 
+	held in your test machines cache to service other peers.</li>
+</ol>
+<h3>System configuration</h3>
+<ul>
+	<li>To be able to compile the samples, the Windows Vista SDK must be 
+	installed. </li>
+	<li>The sample code requires BITS 3.0 which is available as part of Windows 
+	Vista, or Windows codename Longhorn Server. <br>
+	<br>
+&nbsp;</li>
+</ul>
+
+</body>
+
+</html>

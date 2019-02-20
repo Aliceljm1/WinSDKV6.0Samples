@@ -1,0 +1,32 @@
+HKCR
+{
+	SdkShv.SampleShv = s 'SampleShv object'
+	{
+		CLSID = s '{007a95d0-5a9b-4647-8adb-c8b91e64e925}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {007a95d0-5a9b-4647-8adb-c8b91e64e925} = s 'Quarantine System Health Validator: SDK Sample'
+		{
+			val AppID = s '{EEDF28CE-CC5D-4251-A114-33DC950091F4}'
+			ProgID = s 'SdkShv.SampleShv'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+	NoRemove AppID
+	{
+		{EEDF28CE-CC5D-4251-A114-33DC950091F4} = s 'SdkShv'
+		{
+			val AuthenticationLevel = d '0'
+			val DllSurrogate = s ''
+			val RunAs = s 'Interactive User'
+		}
+		'SdkShv.DLL'
+		{
+			val AppID = s {EEDF28CE-CC5D-4251-A114-33DC950091F4}
+		}
+	}
+}

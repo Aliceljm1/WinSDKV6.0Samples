@@ -1,0 +1,55 @@
+HKCR
+{
+    '.recipe' = s 'RecipeFile'
+    ForceRemove RecipeFile
+    {
+        ShellEx
+        {
+            {8895b1c6-b41f-4c1c-a562-0d564250836f} = s '{F654F1BF-54D9-4A2E-B703-889091D3CB2D}'
+        }
+    }
+    PreviewHandlerSDKSample.RecipePreview.1 = s 'RecipePreviewHandler Class'
+    {
+        CLSID = s '{F654F1BF-54D9-4A2E-B703-889091D3CB2D}'
+    }
+    PreviewHandlerSDKSample.RecipePreviewHa = s 'RecipePreviewHandler Class'
+    {
+        CLSID = s '{F654F1BF-54D9-4A2E-B703-889091D3CB2D}'
+        CurVer = s 'PreviewHandlerSDKSample.RecipePreview.1'
+    }
+    NoRemove CLSID
+    {
+        ForceRemove {F654F1BF-54D9-4A2E-B703-889091D3CB2D} = s 'RecipePreviewHandler Class'
+        {
+            ProgID = s 'PreviewHandlerSDKSample.RecipePreview.1'
+            VersionIndependentProgID = s 'PreviewHandlerSDKSample.RecipePreviewHa'
+            InprocServer32 = s '%MODULE%'
+            {
+                val ThreadingModel = s 'Apartment'
+            }
+            val AppID = s '{6d2b5079-2f0b-48dd-ab7f-97cec514d30b}'
+            val DisplayName = s '@%MODULE%,-101'
+            val Icon = s '%MODULE%,201'
+            'TypeLib' = s '{4D4AE09B-2FC5-441E-AB61-8D49E5B8533F}'
+        }
+    }
+}
+HKLM
+{
+    NoRemove SOFTWARE
+    {
+        NoRemove Microsoft
+        {
+            NoRemove Windows
+            {
+                NoRemove CurrentVersion
+                {
+                    NoRemove PreviewHandlers
+                    {
+                        val {F654F1BF-54D9-4A2E-B703-889091D3CB2D} = s 'RecipePreviewHandler'
+                    }
+                }
+            }
+        }
+    }
+}

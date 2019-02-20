@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'PreviewHandlerSDKSample'
+		'PreviewHandlerSDKSample.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

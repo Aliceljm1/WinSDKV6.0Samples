@@ -1,0 +1,86 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BITS DOWNLOADS Sample</title>
+<style>
+<!--
+body         { font-family: Tahoma; font-size: 10pt }
+-->
+</style>
+</head>
+
+<body>
+
+<h2>BITS DOWNLOADS Sample</h2>
+<h3>Summary</h3>
+<p>This sample demonstrates the use of new BITS APIs to download files.</p>
+<h3>Program flow</h3>
+<ol>
+	<li>DOWNLOADS.cpp begins by determining that the correct number of arguments 
+	has been used on the command line. If not, a usage summary is output and the 
+	program ends.</li>
+	<li>The next step is to initialize COM. Note that the security level is then 
+	set to RPC_C_IMP_LEVEL_IMPERSONATE. This is the lowest security level that 
+	will work for our purposes.</li>
+	<li>If all of that goes correctly, we then instanciate an instance of 
+	IBackgroundCopyManager. In effect, this puts us in communication with the 
+	BITS processes that may be running in the test machine. If any of these 
+	fail, a suitable message is output, and the job ends.</li>
+	<li>We use the IBackgroundCopyManager to create a new BITS job. In doing so, 
+	we pass it the name we wish to use for the job, and an enumeration telling 
+	the manager that it is a download job. When it returns, assuming a good 
+	completion code, it will pass back a new Globaly Uniquie Identifier (GUID), 
+	and a pointer to another COM object that is an IBackgroundCopyJob.</li>
+	<li>In the downloads.h file, we described a class named 
+	CNotifyInterface. CNotifyInterface inherits from IBackgroundCopyCallback2. 
+	We use this newly instanciated object by telling the IBackgroundCopyJob to 
+	set it as our Notify Interface. This Notify Interface will be called when 
+	certain events occur. </li>
+	<li>Next the remote and local file names are added.</li>
+	<li>Once files have been added to the job, the job is “Resumed”. This 
+	command tells the job to begin its work.</li>
+	<li>Downloads.cpp is now almost done. This main thread falls into a dispatch 
+	loop, looking for a WM_QUIT message, and dispatching any other messages it 
+	finds.</li>
+</ol>
+<h3>Key Concepts </h3>
+<ul>
+	<li>Basic connection with BITS job manager and submission of BITS jobs </li>
+	<li>Adding a file to the job </li>
+	<li>Registration of a job callback for special handling of errors and job 
+	states </li>
+	<li>Submission of download job</li>
+	<li>Processing notifications on completion. </li>
+	<li>Use of BITS IBackgroundCopyManager </li>
+	<li>Use of BITS IBackgroundCopyJob(n) </li>
+</ul>
+
+<h3>Build/Configuration instructions</h3>
+<ul>
+	<li>Run &quot;VCBuild Downloads&quot; in the directory where the sources are. Or, use 
+	Visual Studio to build the job. Optionally, the binaries are provided. </li>
+	<li>Execute DOWNLOADS.exe. </li>
+</ul>
+
+<h3>Basic Usage</h3>
+<ul>
+	<li>Select a file on a remote computer that your test machine has access to.
+	</li>
+	<li>Select a location and name for the downloaded file to occupy on the test 
+	machine. </li>
+	<li>Enter the command DOWNLOADS.exe &lt;RemoteName&gt; &lt;LocalName&gt; </li>
+	<li>When the download completes or fails, you will be notified. </li>
+</ul>
+<h3>System configuration</h3>
+<ul>
+	<li>To be able to compile the samples, the Windows Vista SDK must be 
+	installed. </li>
+	<li>The sample code requires BITS version 1.0 or later. BITS 3.0 is available as part of Windows 
+	Vista, or Windows codename Longhorn Server. </li>
+</ul>
+
+</body>
+
+</html>

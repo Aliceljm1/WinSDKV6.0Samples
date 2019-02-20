@@ -1,0 +1,40 @@
+<!-- http://localhost/adosamp/adosql2k/XPath.htm	-->
+<!-- Copyright (c) 2001 Microsoft Corporation		-->
+
+<HTML>
+<HEAD>
+<TITLE>ADO 2.7 Samples</TITLE>
+</HEAD>
+<BODY>
+<LINK REL="STYLESHEET" HREF="..\ADOStyle.css">
+
+<H2>Using ADO 2.7 with XPath Queries</H2>
+
+<H3>Sample Overview</H3>
+Beginning with version 2.7, the OLE DB Provider for SQL Server 2000 can
+now execute queries specified using the new XPath command language proposed by
+the W3C. This sample demostrates how to pass in an XPath command via ADO, using this new dialect.
+
+<H3>Setup</H3>
+In XPath.asp, verify that the "Base Path" property points to the directory containing the Orders.xml Mapping Schema.
+By default it is set as follows: <BR>
+<CENTER>adoCmd.Properties("Base Path") = "C:\INETPUB\WWWROOT\ADOSamp\ADOSQL2K"</CENTER>
+
+
+<H3>Running the Sample:</H3>
+Follow the instructions below to run this sample.<BR>
+Point your browser to http://localhost/ADOSamp/ADOSQL2K/XPATH.asp?CompanyName="Tortuga Restaurante",<BR>
+or click <A href="http://localhost/ADOSamp/ADOSQL2K/XPATH.asp?CompanyName='Tortuga Restaurante'">here</A> 
+to run the XPath Sample
+
+<H3>System Requirements</H3>
+This application requires the following system components to run.
+<UL>
+<LI>Microsoft Windows NT 4.0 or Windows 2000</LI>
+<LI>Microsoft Internet Information Services version 4.0 or 5.0</LI>
+<LI>Microsoft Visual C++ version 6.0 or newer</LI>
+<LI>SQL Server 2000 or newer</LI>
+</UL>
+
+</BODY>
+</HTML>

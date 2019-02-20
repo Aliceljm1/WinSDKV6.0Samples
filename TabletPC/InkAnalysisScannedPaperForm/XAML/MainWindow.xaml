@@ -1,0 +1,59 @@
+﻿<!-- THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF   -->
+<!-- ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO -->
+<!-- THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A      -->
+<!-- PARTICULAR PURPOSE.                                                 -->
+<!--                                                                     -->
+<!-- Copyright (c) Microsoft Corporation. All rights reserved.           -->
+
+<Window x:Class="Microsoft.Samples.TabletPC.InkAnalysisScannedPaperForm.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="InkAnalysis Scanned Paper Form"
+    Width="650"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize"
+>
+  <Grid>
+    <TabControl Name="tabControl" SelectionChanged="TabControlSelectionChanged">
+      <TabItem Header="Ink Form">
+        <DockPanel>
+          <DockPanel DockPanel.Dock="Bottom" Margin="10" >
+            <Button DockPanel.Dock="Right"
+                    Click="AnalyzeButtonClicked"
+            >
+              Analyze
+            </Button>
+            <Button 	DockPanel.Dock="Right" 
+                      Click="ClearButtonClicked"
+            >
+              Clear
+            </Button>
+            <CheckBox Name="hintCheckBox"
+                      Checked="Checked"
+                      Unchecked="Unchecked"
+            >
+              Show Analysis Hint Bounding Boxes
+            </CheckBox>
+          </DockPanel>
+          <ScrollViewer DockPanel.Dock="Top" Background="LightGray">
+            <InkCanvas Height ="975"
+                       Name ="inkCanvas" 
+                       StrokeCollected="StrokeCollected"
+            >
+              <Image Source="ImportantMessage.png"/>
+            </InkCanvas>
+          </ScrollViewer>
+        </DockPanel>
+      </TabItem>
+      <TabItem Header="Converted Text Form">
+        <ScrollViewer Background="LightGray">
+          <Canvas  Height="975"
+                   Name="textBoxCanvas" 
+          >
+            <Image Source="ImportantMessage.png"/>
+          </Canvas>
+        </ScrollViewer>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</Window>

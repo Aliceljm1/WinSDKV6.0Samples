@@ -1,0 +1,101 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BITS HTTPHEADER Sample</title>
+<style>
+<!--
+body         { font-family: Tahoma; font-size: 10pt }
+-->
+</style>
+</head>
+
+<body>
+
+<h2>BITS HTTPHEADER Sample</h2>
+<h3>Summary</h3>
+<p>This sample demonstrates using the BITS APIs that allow you to modify HTTP 
+headers. HTTP headers are in the HTTP 1.1 protocol to allow HTTP servers and 
+HTTP clients to communicate their intentions. For example a request header can 
+be passed by a client to a server that gives the server additional information 
+about the request. The HTTP 1.1 specification (<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html</a>) 
+provides some examples of the usage of headers. </p>
+<p>Should a client pass a request header like: </p>
+<blockquote>
+	<p><font face="Courier New">Accept: audio/*; q=0.2, audio/basic </font></p>
+</blockquote>
+<p>This should be interpreted by the server as &quot;I prefer audio/basic, but send 
+me any audio type if it is the best available after an 80% mark-down in 
+quality.&quot; </p>
+<p>The Accept request-header field can be used to specify certain media types 
+which are acceptable for the response. Accept headers can be used to indicate 
+that the request is specifically limited to a small set of desired types, as in 
+the case of a request for an in-line image. </p>
+<p>BITS has the ability to allow API callers to specify their own custom headers 
+that are passed to the HTTP server as part of the HTTP protocol. </p>
+<h3>Program flow</h3>
+<p>In this sample, the request property “Accept-Encoding: gzip, deflate” is 
+used. When passed to the server, it tells the server that the client will accept 
+responses compressed in gzip format. HTTPHEADER.cpp builds on the concepts 
+established in the DOWNLOADS.cpp example, it is recommended that you review 
+DOWNLOADS.cpp prior to reviewing this sample – it will aid understanding of the 
+program flow. The key difference between the two samples is the use of the
+<font face="Courier New">SetCustomHeaders</font> method in the
+<font face="Courier New">IBackgroundCopyJobHttpOptions</font> interface. </p>
+<h3>Key Concepts</h3>
+<ul>
+	<li>Basic connection with BITS job manager and submission of BITS jobs </li>
+	<li>Adding a file to the job </li>
+	<li>Registration of a job callback for special handling of errors and job 
+	states </li>
+	<li>Adding a header to the HTTP request made by BITS. </li>
+	<li>Submission of a job </li>
+	<li>Processing notifications on completion. </li>
+	<li>Use of BITS IBackgroundCopyManager </li>
+	<li>Use of BITS IBackgroundCopyJob(n) </li>
+	<li>Use of BITS IBackgroundCopyJobHttpOptions <br>
+&nbsp;</li>
+</ul>
+<h3>Build/Configuration instructions</h3>
+<ul>
+	<li>Run &quot;VCBuild HTTPHEADER&quot; in the directory where the sources are. Or, use 
+	Visual Studio to build the job. Optionally, the binaries are provided. </li>
+	<li>Execute HTTPHEADERS.exe. <br>
+&nbsp;</li>
+</ul>
+<h3>Basic Usage</h3>
+<ul>
+	<li>Select a file on a HTTP server that your test machine has access to.
+	</li>
+	<li>Select a location and name for the downloaded file to occupy on the test 
+	machine. </li>
+	<li>Enter the command HTTPHEADER.exe &lt;RemoteName&gt; &lt;LocalName&gt; </li>
+	<li>When the HTTPHEADER completes or fails, you will be notified. <br>
+&nbsp;</li>
+</ul>
+<h3>Notes: </h3>
+<ul>
+	<li>It is suggested that a loosely spaced .txt file is used for the 
+	download. </li>
+	<li>In order for a compressed file to be returned in IIS, the file must have an extension
+	that is eligible for compression, and compression must be enabled (default setting).</li>
+	<li>Ensure that the IIS setting for the minimum size of response to compress 
+	is smaller than the size of the text file. </li>
+	<li>When a request is made for a compressed file, IIS checks to see if the 
+	file is in the temporary compression directory. If not, it sends the 
+	uncompressed version to the requestor, and starts a background task to 
+	compress the response and place it into the temporary compression directory. 
+	This means that the 1st request will always be uncompressed. </li>
+</ul>
+<h3>System configuration</h3>
+<ul>
+	<li>To be able to compile the samples, the Windows Vista SDK must be 
+	installed. </li>
+	<li>The sample code requires BITS version 2.5 or later. BITS 3.0 is available as part of Windows 
+	Vista, or Windows codename Longhorn Server. </li>
+</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+HKCR
+{
+	PreviewHandlerSDKSample.RecipePreview.1 = s 'RecipePreviewHandler Class'
+	{
+		CLSID = s '{414AE0AA-BF4E-4B3F-ABA4-D11EDE5B482F}'
+	}
+	PreviewHandlerSDKSample.RecipePreviewHa = s 'RecipePreviewHandler Class'
+	{
+		CLSID = s '{414AE0AA-BF4E-4B3F-ABA4-D11EDE5B482F}'
+		CurVer = s 'PreviewHandlerSDKSample.RecipePreview.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {414AE0AA-BF4E-4B3F-ABA4-D11EDE5B482F} = s 'RecipePreviewHandler Class'
+		{
+			ProgID = s 'PreviewHandlerSDKSample.RecipePreview.1'
+			VersionIndependentProgID = s 'PreviewHandlerSDKSample.RecipePreviewHa'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{4D4AE09B-2FC5-441E-AB61-8D49E5B8533F}'
+		}
+	}
+}

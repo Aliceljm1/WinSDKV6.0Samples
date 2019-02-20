@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Texture3D9", "Texture3D9.vcproj", "{5BF58415-87A4-48B4-B0EE-5B671A2BF15C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BF58415-87A4-48B4-B0EE-5B671A2BF15C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5BF58415-87A4-48B4-B0EE-5B671A2BF15C}.Debug|Win32.Build.0 = Debug|Win32
+		{5BF58415-87A4-48B4-B0EE-5B671A2BF15C}.Release|Win32.ActiveCfg = Release|Win32
+		{5BF58415-87A4-48B4-B0EE-5B671A2BF15C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

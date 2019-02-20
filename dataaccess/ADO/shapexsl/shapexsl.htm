@@ -1,0 +1,53 @@
+<html>
+<head></head>
+<body>
+<LINK REL="STYLESHEET" HREF="..\ADOStyle.css">
+<br/>
+<center><h2>Sales Analysis Using XML and XSL</h2></center>
+
+<FORM ACTION = "OrdersProcess.asp" METHOD = "GET">
+
+<p>This form will generate XML by using the SQL Server "FOR XML" clause, and then format 
+that XML with XSL to produce an HTML table.  The data generated is primarily from the
+Orders table, using one of three related tables in a parent/child relationship
+to group the orders.</p>
+
+<p>Select one of the following parent tables to use in grouping the orders.</p>
+<p><SELECT ID="oGroupBy" NAME="GroupBy" SIZE="1" ONCHANGE="ChangeKey()">
+<OPTION VALUE="1" SELECTED>By Customer
+<OPTION VALUE="2">By Employee
+<OPTION VALUE="3">By Shipper
+</SELECT></p>
+
+<p>If you would like to limit the results to a single <SPAN ID="oGroupKeyName">Customer ID</SPAN>, 
+fill that key value in here.  If you leave this empty, all results will be returned.</p>
+<p><INPUT TYPE=text VALUE="" NAME="KeyVal" SIZE=15></p>
+
+<p>Check the following box to use client-side processing - the XML and XSL will both 
+be sent to the browser client and then formatted and displayed. Otherwise, the XML 
+will be processed with XSL on the server-side and only html will be sent to the client.</p>
+<p><INPUT TYPE=checkbox NAME="ClientProc">Client-side processing.</p>
+
+<br/>
+
+<BUTTON TYPE = "SUBMIT">Get Data</BUTTON>
+
+</FORM>
+
+<SCRIPT LANGUAGE="VBScript">
+Sub ChangeKey
+	dim nOption
+	nOption = document.all.oGroupBy.selectedindex
+
+	If (nOption = 0) Then
+		document.all.oGroupKeyName.InnerHTML = "Customer ID"
+	ElseIf (nOption = 1) Then
+		document.all.oGroupKeyName.InnerHTML = "Employee ID"
+	ElseIf (nOption = 2) Then
+		document.all.oGroupKeyName.InnerHTML = "Shipper ID"
+	End If
+
+End Sub
+</SCRIPT>
+</body>
+</html>

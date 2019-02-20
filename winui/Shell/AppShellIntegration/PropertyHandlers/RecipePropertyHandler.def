@@ -1,0 +1,9 @@
+LIBRARY RecipePropertyHandler
+
+EXPORTS
+        DllCanUnloadNow PRIVATE
+        DllGetClassObject PRIVATE
+        DllRegisterServer PRIVATE
+        DllUnregisterServer PRIVATE
+        InstallPropertySchema
+        UninstallPropertySchema

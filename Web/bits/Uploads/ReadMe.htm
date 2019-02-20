@@ -1,0 +1,79 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BITS UPLOADS Sample</title>
+<style>
+<!--
+body         { font-family: Tahoma; font-size: 10pt }
+-->
+</style>
+</head>
+
+<body>
+
+<h2>BITS UPLOADS Sample</h2>
+<h3>Summary</h3>
+<p>This sample demonstrates the usage of BITS APIs to upload a file.<br>
+<br>
+BITS allows uploads of single files to a remote IIS server. The server must be 
+preconfigured to accept those uploads. An example of how to do that can be found 
+in the \web\bits\upload sample. You can also find the specific requirements for 
+uploads in the BITS documentation. This sample of code is designed to show the 
+difference between upload and download jobs.<br>
+&nbsp;</p>
+<h3>Program flow</h3>
+<p>UPLOADS.cpp builds on the concepts established in the DOWNLOADS.cpp 
+example, it is recommended that you review DOWNLOADS.cpp prior to reviewing this 
+sample – it will aid understanding of the program flow. The key difference 
+between the two samples is that the BG_JOB_TYPE_UPLOAD option is used when 
+creating the job</p>
+<blockquote>
+	<p><font face="Courier New">&nbsp;hr = pQueueMgr-&gt;CreateJob(L&quot;Upload&quot;, 
+	BG_JOB_TYPE_UPLOAD, &amp;guidJob,&amp;pJob);</font></p>
+</blockquote>
+<p>Other than that, and the direction of data flow, the two examples are 
+identical. The one thing you should be aware of is that only one file can be 
+added to an upload job. Notifications are available on upload jobs. Please see 
+the BITS documentation for more information.</p>
+<h3>Key Concepts </h3>
+<ul>
+	<li>Basic connection with BITS job manager and submission of BITS jobs </li>
+	<li>Adding a file to the job </li>
+	<li>Specifying the BG_JOB_TYPE_UPLOAD option. </li>
+	<li>Submission of upload job </li>
+</ul>
+<h3>Build/Configuration instructions</h3>
+<ul>
+	<li>Run &quot;VCBuild UPLOADS&quot; in the directory where the sources are. Or, use 
+	Visual Studio to build the job. Optionally, the binaries are provided. </li>
+	<li>Execute UPLOADS.exe. <br>
+&nbsp;</li>
+</ul>
+<h3>Basic Usage</h3>
+<ul>
+	<li>Select a file on your local machine. </li>
+	<li>Select a virtual directory on a remote IIS server that has been configured for 
+	uploads. If you need an example of how to do the configuration, see the BITS 
+	1.5 samples in this SDK. </li>
+	<li>Select a location and name of a file to upload. </li>
+	<li>Enter the command UPLOADS.exe &lt;RemoteName&gt; &lt;LocalName&gt; Note that the 
+	remote name will be in the form
+	<a href="http://REMOTEMACHINE/VIRTUALDIRECTORY/FILE">
+	http://REMOTEMACHINE/VIRTUALDIRECTORY/FILE</a> </li>
+	<li>When the upload completes or fails, you will be notified. <br>
+&nbsp;</li>
+</ul>
+<h3>System configuration</h3>
+<ul>
+	<li>To be able to compile the samples, the Windows Vista SDK must be 
+	installed. </li>
+	<li>The sample code requires BITS version 1.5 or later versions. BITS 3.0 is available as part of Windows 
+	Vista, or Windows codename Longhorn Server. <br>
+	<br>
+&nbsp;</li>
+</ul>
+
+</body>
+
+</html>

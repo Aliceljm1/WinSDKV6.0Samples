@@ -1,0 +1,111 @@
+<SAMI>
+
+<Head>
+
+    <Title>WMP9S Multiple Language and Subtitle Demo</Title>
+
+    <SAMIParam>
+        Copyright {Copyright (c) Microsoft Corporation.  All rights reserved.}
+        Media {multilang.wma}
+        Metrics {time:ms; duration: 22000;}
+        Spec {MSFT:1.0;}
+    </SAMIParam>
+
+    <STYLE TYPE="text/css"> <!--
+        P {
+            margin-left:  8pt; 
+            margin-right: 8pt;
+            margin-bottom: 2pt; 
+            margin-top:-10pt;
+            text-align: left; 
+            font-size: 12pt; 
+            font-family: arial, sans-serif; 
+            font-weight: bold;
+            color: blue; }
+
+
+         .ENCC {Name:English (United States); lang: en-US; SAMI_Type: CC;}
+         .FRCC {Name:French (France); lang: fr-FR; SAMI_TYPE: CC;}
+         .DECC {Name:German (Germany); lang: de-DE; SAMI_TYPE: CC;}
+         .PTCC {Name:Portuguese (Brazil); lang: pt-BR; SAMI_TYPE: CC;}
+         .JPCC {Name:Japanese; lang: ja-JP; SAMI_TYPE: CC;}
+
+
+
+        #STDPrn {Name:Standard Print;}
+
+        #BlackPrn {
+            Name:Black Print;
+            color: #000000;}
+
+        #SmallPrn {
+            Name:Small Print; 
+            margin-left: 4pt; 
+            margin-right: 42pt; 
+            font-size: 10pt;  
+            font-weight: bold; 
+            vertical-align: super;}
+
+        #Source {
+            margin-left: 4pt; 
+            margin-bottom:10pt; 
+            margin-top:0pt; 
+            margin-right:0pt;
+            font-weight: bold;
+            color: magenta; 
+            vertical-align: super; 
+            font-size: 10pt; 
+            text-align:left;}
+        -->
+    </Style>
+
+
+
+</Head>
+
+<BODY>
+<Sync Start=1000>
+<P Class=JPCC ID=Source>MultiLang.wma Demo
+<P Class=JPCC>Windows&#12513;&#12487;&#12451;&#12450;&#12399;&#12289;&#12354;&#12394;&#12383;&#12398;&#35328;&#35486;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12414;&#12377;&#12290;[1]<SpanID:0;>
+
+<Sync Start=5000>
+<P Class=ENCC ID=Source>MultiLang.wma Demo
+<P Class=ENCC>Windows Media. Speak your language[1]<SpanID:0;>
+<P Class=FRCC ID=Source>MultiLang.wma Demo
+<P Class=FRCC>Windows Media. Parle votre langue.[1]<SpanID:0;>
+<P Class=PTCC ID=Source>MultiLang.wma Demo
+<P Class=PTCC>Windows Media. Fala a sua língua.[1]<SpanID:0;>
+<P Class=DECC ID=Source>MultiLang.wma Demo
+<P Class=DECC>Windows Media. Spricht Ihre Sprache.[1]<SpanID:0;>
+
+<Sync Start=9000>
+<P Class=JPCC ID=Source>MultiLang.wma Demo
+<P Class=JPCC>Windows&#12513;&#12487;&#12451;&#12450;&#12399;&#12289;&#12354;&#12394;&#12383;&#12398;&#35328;&#35486;&#12434;&#12469;&#12509;&#12540;&#12488;&#12375;&#12414;&#12377;&#12290;[2]<SpanID:0;>
+
+<Sync Start=14000>
+<P Class=FRCC ID=Source>MultiLang.wma Demo
+<P Class=FRCC>Windows Media. Parle votre langue.[2]<SpanID:0;>
+<P Class=PTCC ID=Source>MultiLang.wma Demo
+<P Class=PTCC>Windows Media. Fala a sua língua.[2]<SpanID:0;>
+
+<Sync Start=17000>
+<P Class=ENCC ID=Source>MultiLang.wma Demo
+<P Class=ENCC>Windows Media. Speak your language[2]<SpanID:0;>
+
+<Sync Start=18000>
+<P Class=DECC ID=Source>MultiLang.wma Demo
+<P Class=DECC>Windows Media. Spricht Ihre Sprache.[2]<SpanID:0;>
+
+<Sync Start=22000>
+<P Class=ENCC ID=Source>&nbsp;
+<P Class=ENCC>&nbsp;
+<P Class=FRCC ID=Source>&nbsp;
+<P Class=FRCC>&nbsp;
+<P Class=DECC ID=Source>&nbsp;
+<P Class=DECC>&nbsp;
+<P Class=PTCC ID=Source>&nbsp;
+<P Class=PTCC>&nbsp;
+<P Class=JPCC ID=Source>&nbsp;
+<P Class=JPCC>&nbsp;
+</Body>
+</SAMI>

@@ -1,0 +1,21 @@
+#include "resource.h"
+#include <windows.h>
+
+IDD_DIALOG1 DIALOGEX 0, 0, 295, 224
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "NameSpaceTreeControl Test App"
+FONT 9, "Segoe UI", 0, 0, 0x0
+BEGIN
+    LTEXT           "",IDC_BROWSER,7,6,281,118,NOT WS_VISIBLE
+    GROUPBOX        "Item Information",-1,7,129,281,69
+    LTEXT           "Parse:",-1,12,139,24,8
+    LTEXT           "",IDC_NAME,40,139,196,8
+    LTEXT           "Path:",-1,12,149,24,8
+    LTEXT           "",IDC_PATH,40,149,193,8
+    LTEXT           "SFGAO:",-1,12,159,24,8
+    LTEXT           "",IDC_ATTRIBUTES,40,159,193,8
+    CONTROL         "",IDC_IMAGE,"Static",SS_BITMAP | SS_CENTERIMAGE | SS_REALSIZEIMAGE,238,135,32,30,WS_EX_TRANSPARENT
+    DEFPUSHBUTTON   "Open",IDC_EXPLORE,7,202,50,14
+    PUSHBUTTON      "Cancel",IDC_CANCEL,238,202,50,14
+END
+

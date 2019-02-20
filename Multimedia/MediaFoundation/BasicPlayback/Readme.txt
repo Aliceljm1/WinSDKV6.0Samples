@@ -1,0 +1,1 @@
+This sample demonstrates how to play clear content in Media Foundation.

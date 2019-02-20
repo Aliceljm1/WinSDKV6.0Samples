@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="ADOSamp.xsl"?> 
+<root>
+
+<samples>
+	<sample id='1'>
+		<title>SimpleDB - an Intro to ADO</title>
+		<desc>The sample demonstrates the use of ADO's Connection, Command and Recordset objects.</desc>
+		<read>http://LOCALHOST/ADOSamp/SimpleDB/Default.htm</read>
+		<run>http://LOCALHOST/ADOSamp/SimpleDB/SimpleDB.htm</run>
+		<view>http://LOCALHOST/ADOSamp/SimpleDB/Source.htm</view>
+	</sample>
+
+	<sample id='2'>
+		<title>Sales Analysis using the Shape Provider</title>
+		<desc> Generate Hierarchical Recordsets using the Shape Provider and ADO.</desc>
+		<read>http://LOCALHOST/ADOSamp/Shape/default.htm</read>
+		<run>http://LOCALHOST/ADOSamp/Shape/shape.asp</run>
+		<view>http://LOCALHOST/ADOSamp/codeview.asp?Source=/ADOSamp/Shape/shape.asp</view>
+	</sample>
+
+	<sample id='3'>
+		<title>Sales Analysis using XML and XSL</title>
+		<desc>This sample shows how to use the new XML features in SQL Server 2000 
+			in conjunction with ADO and MSXML to generate different views of the 
+			Orders table and format the results as an HTML table via XSL.</desc>
+		<read>http://LOCALHOST/ADOSamp/ShapeXSL/Default.htm</read>
+		<run>http://LOCALHOST/ADOSamp/ShapeXSL/ShapeXSL.htm</run>
+		<view>http://LOCALHOST/ADOSamp/codeview.asp?Source=/ADOSamp/ShapeXSL/OrdersToTableServer.asp</view>
+	</sample>
+
+	<sample id='4'>
+		<title>Semi-Structured Record and Stream</title>
+		<desc>Visual Basic application which demostrates using ADO with semi-structured data from the 
+		Microsoft OLE DB Provider for Internet Publishing (MSDAIPP).</desc>
+		<read>http://LOCALHOST/ADOSamp/semistru/default.htm</read>
+		<run>http://LOCALHOST/ADOSamp/semistru/semistru.htm</run>
+		<view>http://LOCALHOST/ADOSamp/semistru/source.htm</view>
+	</sample>
+
+	<sample id='5'>
+		<title>InventoryApp 3-Tier</title>
+		<desc>An HTML client, Visual Basic Business Object and SQL Server Back end.</desc>
+		<read>http://LOCALHOST/ADOSamp/InventoryApp/Inventory.htm</read>
+		<run>http://LOCALHOST/ADOSamp/InventoryApp/Default.htm</run>
+		<view>http://LOCALHOST/ADOSamp/codeview.asp?Source=/ADOSamp/InventoryApp/InventoryList.asp</view>
+	</sample>
+
+	<sample id='6'>
+		<title>SQL Server 2000 - Select ... For XML</title>
+		<desc>Demonstrates SQL Server 2000's new FOR XML clause, 
+			allowing query results to be returned as XML documents.</desc>
+		<read>http://LOCALHOST/ADOSamp/ADOSQL2K/forxml.htm</read>
+		<run>http://LOCALHOST/ADOSamp/ADOSQL2K/FORXML.ASP</run>
+		<view>http://LOCALHOST/ADOSamp/codeview.asp?Source=/ADOSamp/ADOSQL2K/FORXML.ASP</view>
+	</sample>
+
+	<sample id='7'>
+		<title>SQL Server 2000 - XPATH Queries</title>
+		<desc>Demonstrates SQL Server 2000's support for XPATH Queries and Annotated Schemas</desc>
+		<read>http://LOCALHOST/ADOSamp/ADOSQL2K/xpath.htm</read>
+		<run>http://LOCALHOST/ADOSamp/ADOSQL2K/XPATH.ASP?CompanyName="Tortuga Restaurante"</run>
+		<view>http://LOCALHOST/ADOSamp/codeview.asp?Source=/ADOSamp/ADOSQL2K/XPATH.ASP</view>
+	</sample>
+
+	<sample id='8'>
+		<title>SQL Server 2000 - OpenXML</title>
+		<desc>Demonstrates SQL Server 2000's Open XML Feature</desc>
+		<read>http://LOCALHOST/ADOSamp/ADOSQL2K/openxml.htm</read>
+		<run>http://LOCALHOST/ADOSamp/ADOSQL2K/OpenXML.ASP</run>
+		<view>http://LOCALHOST/ADOSamp/codeview.asp?Source=/ADOSamp/ADOSQL2K/OpenXML.ASP</view>
+	</sample>
+
+	<sample id='9'>
+		<title>ISAPI DLL Using ADO</title>
+		<desc>Demonstrates how to use ADO in an IIS Server Extension (an ISAPI DLL)</desc>
+		<read>http://LOCALHOST/ADOSamp/ISAPI/DEFAULT.HTM</read>
+		<run>http://LOCALHOST/ADOSamp/ISAPI/DEFAULT.HTM</run>
+		<view>http://LOCALHOST/ADOSamp/ISAPI/source.htm</view>
+	</sample>
+
+	<sample id='10'>
+		<title>ADOVCGen - VC Client with ADO</title>
+		<desc>Programming ADO using Visual C++</desc>
+		<read>http://LOCALHOST/ADOSamp/ADOVCGen/default.htm</read>
+		<run>http://LOCALHOST/ADOSamp/ADOVCGen/ADOVCGen.htm</run>
+		<view>http://LOCALHOST/ADOSamp/ADOVCGen/source.htm</view>
+	</sample>
+
+
+	<sample id='11'>
+		<title>Performance Sample</title>
+		<desc>Best Practices performance guide</desc>
+		<read>http://LOCALHOST/ADOSamp/performance/default.htm</read>
+		<run>http://LOCALHOST/ADOSamp/performance/PerfDemo.htm</run>
+		<view>http://LOCALHOST/ADOSamp/performance/source.htm</view>
+	</sample>
+
+</samples>
+
+<shortcuts>
+	<shortcut>
+		<url>http://LOCALHOST/ADOSamp/overview.htm</url>
+		<desc>Click here to return to the ADO Sample Overview</desc>
+	</shortcut>
+	<shortcut>
+		<url>http://www.msdn.microsoft.com</url>
+		<desc>Click here to browse the MSDN Site</desc>
+	</shortcut>
+	<shortcut>
+		<url>http://www.microsoft.com/data</url>
+		<desc>Click here to browse the Microsoft Data Site</desc>
+	</shortcut>
+
+</shortcuts>
+
+</root>
+
