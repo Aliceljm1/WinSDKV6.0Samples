@@ -15,17 +15,17 @@
 // CCOMRTSDlg dialog
 class CCOMRTSDlg : public CDialog
 {
-// Construction
+	// Construction
 public:
 	CCOMRTSDlg(CWnd* pParent = NULL);	// standard constructor
 
-// Dialog Data
+	// Dialog Data
 	enum { IDD = IDD_COMRTS_DIALOG };
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 
-// Implementation
+	// Implementation
 protected:
 	HICON m_hIcon;
 	HCURSOR m_hCursor;
@@ -40,16 +40,16 @@ protected:
 public:
 	// Dialog control members
 	CStatic m_gbTestArea;
-    CListBox m_ListBox;
+	CListBox m_ListBox;
 	CButton* m_pCheck[4];
 	CStatic m_staticGestureStatus;
 
 public:
 	// Message handlers
 	afx_msg void OnBnClickedButtonClearTestArea();
-    afx_msg void OnBnClickedCheck();
-    afx_msg void OnBnClickedButtonUp();
-    afx_msg void OnBnClickedButtonDown();
+	afx_msg void OnBnClickedCheck();
+	afx_msg void OnBnClickedButtonUp();
+	afx_msg void OnBnClickedButtonDown();
 
 public:
 	// Helper methods
@@ -59,9 +59,11 @@ public:
 	HRESULT InitGestureRecognizer();
 	HRESULT InitGestureHandler();
 	HRESULT InitCustomRenderer();
-    //HRESULT InsertIntoPluginCollection(int nIndex);
-    HRESULT InsertIntoPluginCollection(int nIndex, IStylusSyncPlugin* pSyncPlugin);
-    HRESULT RemoveFromPluginCollection(int nIndex);
-    void Clear();
-    int FindPrecedingPlugin(int nIndex);
+	//HRESULT InsertIntoPluginCollection(int nIndex);
+	HRESULT InsertIntoPluginCollection(int nIndex, IStylusSyncPlugin* pSyncPlugin);
+	HRESULT RemoveFromPluginCollection(int nIndex);
+	void Clear();
+	int FindPrecedingPlugin(int nIndex);
+static	int getPenPressure();
+
 };

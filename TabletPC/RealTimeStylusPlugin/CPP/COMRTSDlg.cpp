@@ -212,6 +212,45 @@ HCURSOR CCOMRTSDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+//无用，不是想要的
+int CCOMRTSDlg::getPenPressure()
+{
+	int pres=0;
+GUID guidDesiredPacketDescription[] = { GUID_PACKETPROPERTY_GUID_X, 
+                                        GUID_PACKETPROPERTY_GUID_Y, 
+                                        GUID_PACKETPROPERTY_GUID_NORMAL_PRESSURE,
+                                        GUID_PACKETPROPERTY_GUID_TANGENT_PRESSURE };
+
+	// Number of properties in the array
+	ULONG ulProperties = sizeof(guidDesiredPacketDescription) / sizeof(GUID);
+
+	// Set the packet information we'd like to get
+	if (SUCCEEDED(g_pRealTimeStylus->SetDesiredPacketDescription(ulProperties, guidDesiredPacketDescription)))
+	{
+		TRACE("Set the desired packet description successfully.\n");
+	}
+
+	GUID* pGuids = NULL;
+
+	// See if setting the properties was successful
+	if (SUCCEEDED(g_pRealTimeStylus->GetDesiredPacketDescription(&ulProperties, &pGuids)))
+	{
+		TRACE("The RealTimeStylus supports %d properties.\n", ulProperties);
+
+		// Display the values of the GUIDs in debug output
+		for (int i = 0; i < ulProperties; i++)
+		{
+			TRACE("GUID #%d == %d\n", i, pGuids[i]);
+			//FILE_LOG(logINFO)<<"pen,d1="<<pGuids[i].Data1<<",d2="<<pGuids[i].Data2<<",d3="<<pGuids[i].Data3<<",d4="<<(int)pGuids[i].Data4<<";";
+
+		}
+		//pres=(int)pGuids[ulProperties-1];
+	}
+
+	return pres;
+}
+
+
 
 // Helper functions
 HRESULT CCOMRTSDlg::InitRealTimeStylus()
