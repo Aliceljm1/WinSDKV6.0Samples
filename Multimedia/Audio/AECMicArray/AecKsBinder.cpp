@@ -358,6 +358,7 @@ HRESULT GetInputJack(__in IMMDevice * pDevice,
     return hr;
 }// GetInputJack()
 
+#define PARTID_MASK 0x0000ffff
 
 ///////////////////////////////////////////////////////////////////////////////
 // Function:
