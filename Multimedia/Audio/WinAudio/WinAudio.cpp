@@ -477,7 +477,7 @@ BOOL CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
                 {
                     int count = pPlayer->GetDeviceListCount(eCapture);
                     for (int index = 0; index < count; index++)
-                    {
+                    {//add by ljm 循环麦克风设备，列举名字
                         pPlayer->GetListDeviceName(eCapture, index, szDeviceName,
                                                    sizeof(szDeviceName)/sizeof(szDeviceName)[0]);
                         SendDlgItemMessage(hDlg, IDC_COMBO_CAPTUREDEVICE, CB_ADDSTRING,

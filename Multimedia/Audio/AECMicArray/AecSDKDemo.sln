@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AecSDKDemo", "AecSDKDemo.vcxproj", "{C0DBE415-805A-4C88-B69F-62E2CF722CA2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinAudio", "..\WinAudio\WinAudio.vcxproj", "{9EC9ADF6-5822-4545-9228-02CBBBE8B617}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{C0DBE415-805A-4C88-B69F-62E2CF722CA2}.Debug|Win32.Build.0 = Debug|Win32
 		{C0DBE415-805A-4C88-B69F-62E2CF722CA2}.Release|Win32.ActiveCfg = Release|Win32
 		{C0DBE415-805A-4C88-B69F-62E2CF722CA2}.Release|Win32.Build.0 = Release|Win32
+		{9EC9ADF6-5822-4545-9228-02CBBBE8B617}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9EC9ADF6-5822-4545-9228-02CBBBE8B617}.Debug|Win32.Build.0 = Debug|Win32
+		{9EC9ADF6-5822-4545-9228-02CBBBE8B617}.Release|Win32.ActiveCfg = Release|Win32
+		{9EC9ADF6-5822-4545-9228-02CBBBE8B617}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

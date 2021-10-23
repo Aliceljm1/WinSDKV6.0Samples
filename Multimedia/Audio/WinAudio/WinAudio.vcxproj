@@ -76,6 +76,7 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <AdditionalDependencies>user32.lib;comdlg32.lib;comctl32.lib;ole32.lib;%(AdditionalDependencies)</AdditionalDependencies>

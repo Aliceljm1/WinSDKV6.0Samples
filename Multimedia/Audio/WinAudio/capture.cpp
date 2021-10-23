@@ -30,6 +30,7 @@
 #include <ksmedia.h>
 #include <ksguid.h>
 #include "player.h"
+#include <stdio.h>
 
 // MFTIME time units per second and per millisecond
 #define MFTIMES_PER_MILLISEC  10000
@@ -39,6 +40,180 @@
 #define SAFE_RELEASE(punk)  \
               if ((punk) != NULL)  \
                 { (punk)->Release(); (punk) = NULL; }
+
+ static int        _recChannelsPrioList[3];
+
+void initData() 
+{
+    _recChannelsPrioList[0] = 2;    // stereo is prio 1
+    _recChannelsPrioList[1] = 1;    // mono is prio 2
+    _recChannelsPrioList[2] = 4;    // stereo is prio 1
+}
+
+ void checkMircoPhoneIsOkEx(IAudioClient * _ptrClientIn, IMMDevice * _ptrDeviceIn, HWND parent)
+ {
+     initData();
+     char msgbuf[1024];
+     sprintf(msgbuf, "checkMircoPhoneIsOkEx Faile");
+
+     HRESULT hr = S_OK;
+     WAVEFORMATEX* pWfxIn = NULL;
+     WAVEFORMATEXTENSIBLE Wfx = WAVEFORMATEXTENSIBLE();
+     WAVEFORMATEX* pWfxClosestMatch = NULL;
+
+     // Create COM object with IAudioClient interface.
+     SAFE_RELEASE(_ptrClientIn);
+     hr = _ptrDeviceIn->Activate(__uuidof(IAudioClient), CLSCTX_ALL, NULL,
+         (void**)&_ptrClientIn);
+     EXIT_ON_ERROR(hr);
+
+     // Retrieve the stream format that the audio engine uses for its internal
+     // processing (mixing) of shared-mode streams.
+     hr = _ptrClientIn->GetMixFormat(&pWfxIn);
+     if (SUCCEEDED(hr)) {
+        
+     }
+
+     // Set wave format
+     Wfx.Format.wFormatTag = WAVE_FORMAT_EXTENSIBLE;
+     Wfx.Format.wBitsPerSample = 16;
+     Wfx.Format.cbSize = 22;
+     Wfx.dwChannelMask = 0;
+     Wfx.Samples.wValidBitsPerSample = Wfx.Format.wBitsPerSample;
+     Wfx.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
+
+     const int freqs[6] = { 48000, 44100, 16000, 96000, 32000, 8000 };
+     hr = S_FALSE;
+
+     // Iterate over frequencies and channels, in order of priority
+     for (unsigned int freq = 0; freq < sizeof(freqs) / sizeof(freqs[0]); freq++) {
+         for (unsigned int chan = 0;
+             chan < sizeof(_recChannelsPrioList) / sizeof(_recChannelsPrioList[0]);
+             chan++) {
+             Wfx.Format.nChannels = _recChannelsPrioList[chan];
+             Wfx.Format.nSamplesPerSec = freqs[freq];
+             Wfx.Format.nBlockAlign =
+                 Wfx.Format.nChannels * Wfx.Format.wBitsPerSample / 8;
+             Wfx.Format.nAvgBytesPerSec =
+                 Wfx.Format.nSamplesPerSec * Wfx.Format.nBlockAlign;
+             // If the method succeeds and the audio endpoint device supports the
+             // specified stream format, it returns S_OK. If the method succeeds and
+             // provides a closest match to the specified format, it returns S_FALSE.
+             hr = _ptrClientIn->IsFormatSupported(
+                 AUDCLNT_SHAREMODE_SHARED, (WAVEFORMATEX*)&Wfx, &pWfxClosestMatch);
+             if (hr == S_OK) {
+
+                 sprintf(msgbuf, " checkMircoPhoneIsOkEx GetMixFormat OK\nWfx.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
+                     Wfx.Format.nChannels, Wfx.Format.nSamplesPerSec, Wfx.Format.nBlockAlign, Wfx.Format.nAvgBytesPerSec, Wfx.Format.wFormatTag, Wfx.Format.cbSize
+                 );
+                 OutputDebugStringA(msgbuf);
+                 break;
+             }
+             else {
+                 if (pWfxClosestMatch) {
+
+                     sprintf(msgbuf, "checkMircoPhoneIsOkEx   IsFormatSupported OK\nWfx.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
+                         pWfxClosestMatch->nChannels, pWfxClosestMatch->nSamplesPerSec, pWfxClosestMatch->nBlockAlign, pWfxClosestMatch->nAvgBytesPerSec, pWfxClosestMatch->wFormatTag, pWfxClosestMatch->cbSize
+                     );
+                     CoTaskMemFree(pWfxClosestMatch);
+                     pWfxClosestMatch = NULL;
+                 }
+                 else {
+                     sprintf(msgbuf, "checkMircoPhoneIsOkEx IsFormatSupported is not  supported\nWfx.Format.nChannels=%d,Wfx.Format.nSamplesPerSec=%d",
+                         Wfx.Format.nChannels, Wfx.Format.nSamplesPerSec
+                     );
+
+                     MessageBoxA(parent, msgbuf, "checkMircoPhoneIsOkEx faile", NULL);
+                 }
+             }
+         }
+         if (hr == S_OK)
+             break;
+     }
+
+ Exit:
+     MessageBoxA(parent, msgbuf, "checkMircoPhoneIsOkEx INFO", NULL);
+ }
+
+void checkMircoPhoneIsOk(IAudioClient * _ptrClientIn, IMMDevice* _ptrDeviceIn,HWND parent)
+{
+    initData();
+
+    char msgbuf[1024];
+    sprintf(msgbuf, "Faile");
+
+    HRESULT hr = S_OK;
+    WAVEFORMATEX* pWfxIn = NULL;
+    WAVEFORMATEX Wfx = WAVEFORMATEX();
+    WAVEFORMATEX* pWfxClosestMatch = NULL;
+
+    // Create COM object with IAudioClient interface.
+    SAFE_RELEASE(_ptrClientIn);
+    hr = _ptrDeviceIn->Activate(
+        __uuidof(IAudioClient),
+        CLSCTX_ALL,
+        NULL,
+        (void**)&_ptrClientIn);
+    EXIT_ON_ERROR(hr);
+
+    // Retrieve the stream format that the audio engine uses for its internal
+    // processing (mixing) of shared-mode streams.
+    hr = _ptrClientIn->GetMixFormat(&pWfxIn);
+    if (SUCCEEDED(hr))
+    {
+        OutputDebugString(L"GetMixFormat OK");
+    }
+
+    // Set wave format old code ,add by ljm 2021-10-20
+    Wfx.wFormatTag = WAVE_FORMAT_PCM;//test œ£Œ÷
+    Wfx.wBitsPerSample = 16;
+    Wfx.cbSize = 0;
+
+    const int freqs[8] = { 48000, 44100, 16000, 96000, 32000,22050,11025, 8000 };
+    hr = S_FALSE;
+
+    // Iterate over frequencies and channels, in order of priority
+    for (int freq = 0; freq < sizeof(freqs) / sizeof(freqs[0]); freq++)
+    {
+        for (int chan = 0; chan < sizeof(_recChannelsPrioList) / sizeof(_recChannelsPrioList[0]); chan++)
+        {
+            Wfx.nChannels = _recChannelsPrioList[chan];
+            Wfx.nSamplesPerSec = freqs[freq];
+            Wfx.nBlockAlign = Wfx.nChannels * Wfx.wBitsPerSample / 8;
+            Wfx.nAvgBytesPerSec = Wfx.nSamplesPerSec * Wfx.nBlockAlign;
+            // If the method succeeds and the audio endpoint device supports the specified stream format,
+            // it returns S_OK. If the method succeeds and provides a closest match to the specified format,
+            // it returns S_FALSE.
+            hr = _ptrClientIn->IsFormatSupported(
+                AUDCLNT_SHAREMODE_SHARED,
+                &Wfx,
+                &pWfxClosestMatch);
+            if (hr == S_OK)
+            {
+                sprintf(msgbuf, "GetMixFormat OK\nWfx.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
+                    Wfx.nChannels, Wfx.nSamplesPerSec, Wfx.nBlockAlign, Wfx.nAvgBytesPerSec, Wfx.wFormatTag,Wfx.cbSize
+                );
+                OutputDebugStringA(msgbuf);
+                break;
+            }
+            else
+            {
+                if (pWfxClosestMatch != NULL) {
+                    sprintf(msgbuf, "GetMixFormat OK\nWfx.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
+                        pWfxClosestMatch->nChannels, pWfxClosestMatch->nSamplesPerSec, pWfxClosestMatch->nBlockAlign, pWfxClosestMatch->nAvgBytesPerSec, pWfxClosestMatch->wFormatTag, pWfxClosestMatch->cbSize
+                    );
+                    MessageBoxA(parent, msgbuf, "match", NULL);
+                }
+            }
+        }
+        if (hr == S_OK)
+            break;
+    }
+
+Exit:
+    MessageBoxA(parent, msgbuf,"INFO",NULL);
+
+}
 
 //
 // Audio capture and playback thread -- Launched by Player
@@ -72,6 +247,10 @@ DWORD WINAPI PlayCaptureStream(LPVOID pPlayerObject)
     hr = pClientIn->GetMixFormat(&pWfx);
     EXIT_ON_ERROR(hr)
     ULONG frameSize = pWfx->nChannels * pWfx->wBitsPerSample / 8;
+
+
+    checkMircoPhoneIsOk(pClientIn,pPlayer->m_pDeviceIn,pPlayer->m_hDlg);
+    checkMircoPhoneIsOkEx(pClientIn,pPlayer->m_pDeviceIn,pPlayer->m_hDlg);
 
     // Create a rendering stream with the same format as capture stream.
     hr = pClientOut->Initialize(AUDCLNT_SHAREMODE_SHARED,  // shared mode
@@ -204,6 +383,7 @@ DWORD WINAPI PlayCaptureStream(LPVOID pPlayerObject)
     EXIT_ON_ERROR(hr)
 
 Exit:
+    int lasterror = GetLastError();
     SAFE_RELEASE(pPlayer->m_pClientIn)
     SAFE_RELEASE(pPlayer->m_pClientOut)
     SAFE_RELEASE(pRenderClient)
