@@ -47,6 +47,8 @@ void initData()
 {
     _recChannelsPrioList[0] = 2;    // stereo is prio 1
     _recChannelsPrioList[1] = 1;    // mono is prio 2
+    //_recChannelsPrioList[2] = 4;    // mono is prio 2
+
 }
 
 WAVEFORMATEXTENSIBLE checkMircoPhoneIsOkEx(IAudioClient * _ptrClientIn, IMMDevice * _ptrDeviceIn, HWND parent)
@@ -72,6 +74,8 @@ WAVEFORMATEXTENSIBLE checkMircoPhoneIsOkEx(IAudioClient * _ptrClientIn, IMMDevic
      if (SUCCEEDED(hr)) {
         
      }
+     const int freqs[6] = { 48000, 44100, 16000, 96000, 32000, 8000 };
+
 
      // Set wave format
      Wfx.Format.wFormatTag = WAVE_FORMAT_EXTENSIBLE;
@@ -81,7 +85,7 @@ WAVEFORMATEXTENSIBLE checkMircoPhoneIsOkEx(IAudioClient * _ptrClientIn, IMMDevic
      Wfx.Samples.wValidBitsPerSample = Wfx.Format.wBitsPerSample;
      Wfx.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
 
-     const int freqs[6] = { 48000, 44100, 16000, 96000, 32000, 8000 };
+
      hr = S_FALSE;
 
      // Iterate over frequencies and channels, in order of priority
@@ -111,7 +115,7 @@ WAVEFORMATEXTENSIBLE checkMircoPhoneIsOkEx(IAudioClient * _ptrClientIn, IMMDevic
              else {
                  if (pWfxClosestMatch) {
 
-                     sprintf(msgbuf, "checkMircoPhoneIsOkEx   IsFormatSupported OK\nWfx.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
+                     sprintf(msgbuf, "checkMircoPhoneIsOkEx   IsFormatSupported is not OK\n pWfxClosestMatch.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
                          pWfxClosestMatch->nChannels, pWfxClosestMatch->nSamplesPerSec, pWfxClosestMatch->nBlockAlign, pWfxClosestMatch->nAvgBytesPerSec, pWfxClosestMatch->wFormatTag, pWfxClosestMatch->cbSize
                      );
                      CoTaskMemFree(pWfxClosestMatch);
@@ -133,7 +137,16 @@ WAVEFORMATEXTENSIBLE checkMircoPhoneIsOkEx(IAudioClient * _ptrClientIn, IMMDevic
      }
 
  Exit:
+     //强行使用第一个作为默认值
+     Wfx.Format.nChannels = _recChannelsPrioList[0];
+     Wfx.Format.nSamplesPerSec = freqs[0];
+     Wfx.Format.nBlockAlign =
+         Wfx.Format.nChannels * Wfx.Format.wBitsPerSample / 8;
+     Wfx.Format.nAvgBytesPerSec =
+         Wfx.Format.nSamplesPerSec * Wfx.Format.nBlockAlign;
+
      MessageBoxA(parent, msgbuf, "checkMircoPhoneIsOkEx INFO", NULL);
+     return Wfx;
  }
 
 void checkMircoPhoneIsOk(IAudioClient * _ptrClientIn, IMMDevice* _ptrDeviceIn,HWND parent)
@@ -248,17 +261,18 @@ DWORD WINAPI PlayCaptureStream(LPVOID pPlayerObject)
     WAVEFORMATEXTENSIBLE Wfx = checkMircoPhoneIsOkEx(pClientIn, pPlayer->m_pDeviceIn, pPlayer->m_hDlg);
 
 
-    //WAVEFORMATEX* pWfx = NULL;
+    
     // Get the capture stream format. (Later on, remember to free
     // *pWfx by calling CoTaskMemFree.)
-    //hr = pClientIn->GetMixFormat(&pWfx);
-    //EXIT_ON_ERROR(hr)
+     WAVEFORMATEX* pWfxout = NULL;
+    hr = pClientOut->GetMixFormat(&pWfxout);//用此方法获取会导致我本机AUDCLNT_E_UNSUPPORTED_FORMAT
+    EXIT_ON_ERROR(hr)
     
 
     ULONG frameSize = Wfx.Format.nChannels * Wfx.Format.wBitsPerSample / 8;
 
 
-    {//error ERROR_MUI_FILE_NOT_FOUND : 资源加载器找不到 MUI 文件。 
+    {
         // Create a rendering stream with the same format as capture stream.
         hr = pClientOut->Initialize(AUDCLNT_SHAREMODE_SHARED,  // shared mode
             0,                         // stream flags
@@ -268,7 +282,7 @@ DWORD WINAPI PlayCaptureStream(LPVOID pPlayerObject)
             NULL);                     // session GUID
         HRESULT demo = AUDCLNT_E_NOT_INITIALIZED;
         if (hr == AUDCLNT_E_UNSUPPORTED_FORMAT) {
-            
+            MessageBoxA(pPlayer->m_hDlg, ("输出设备格式不正确"), ("格式不正确"), NULL);
         }
         EXIT_ON_ERROR(hr)
 
