@@ -41,16 +41,15 @@
               if ((punk) != NULL)  \
                 { (punk)->Release(); (punk) = NULL; }
 
- static int        _recChannelsPrioList[3];
+ static int        _recChannelsPrioList[2];
 
 void initData() 
 {
     _recChannelsPrioList[0] = 2;    // stereo is prio 1
     _recChannelsPrioList[1] = 1;    // mono is prio 2
-    _recChannelsPrioList[2] = 4;    // stereo is prio 1
 }
 
- void checkMircoPhoneIsOkEx(IAudioClient * _ptrClientIn, IMMDevice * _ptrDeviceIn, HWND parent)
+WAVEFORMATEXTENSIBLE checkMircoPhoneIsOkEx(IAudioClient * _ptrClientIn, IMMDevice * _ptrDeviceIn, HWND parent)
  {
      initData();
      char msgbuf[1024];
@@ -103,7 +102,7 @@ void initData()
                  AUDCLNT_SHAREMODE_SHARED, (WAVEFORMATEX*)&Wfx, &pWfxClosestMatch);
              if (hr == S_OK) {
 
-                 sprintf(msgbuf, " checkMircoPhoneIsOkEx GetMixFormat OK\nWfx.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
+                 sprintf(msgbuf, " checkMircoPhoneIsOkEx GetMixFormatEx OK\nWfx.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
                      Wfx.Format.nChannels, Wfx.Format.nSamplesPerSec, Wfx.Format.nBlockAlign, Wfx.Format.nAvgBytesPerSec, Wfx.Format.wFormatTag, Wfx.Format.cbSize
                  );
                  OutputDebugStringA(msgbuf);
@@ -127,8 +126,10 @@ void initData()
                  }
              }
          }
-         if (hr == S_OK)
+         if (hr == S_OK) {
+             return Wfx;
              break;
+         }
      }
 
  Exit:
@@ -199,10 +200,10 @@ void checkMircoPhoneIsOk(IAudioClient * _ptrClientIn, IMMDevice* _ptrDeviceIn,HW
             else
             {
                 if (pWfxClosestMatch != NULL) {
-                    sprintf(msgbuf, "GetMixFormat OK\nWfx.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
+                    sprintf(msgbuf, "GetMixFormat not OK\nWfx.nChannels=%d,Wfx.nSamplesPerSec=%d\nWfx.nBlockAlign=%d,Wfx.nAvgBytesPerSec=%d\nWfx.nAvgBytesPerSec=%d,Wfx.wFormatTag=%d,Wfx.cbSize=%d",
                         pWfxClosestMatch->nChannels, pWfxClosestMatch->nSamplesPerSec, pWfxClosestMatch->nBlockAlign, pWfxClosestMatch->nAvgBytesPerSec, pWfxClosestMatch->wFormatTag, pWfxClosestMatch->cbSize
                     );
-                    MessageBoxA(parent, msgbuf, "match", NULL);
+                    MessageBoxA(parent, msgbuf, "match a format", NULL);
                 }
             }
         }
@@ -221,7 +222,7 @@ Exit:
 DWORD WINAPI PlayCaptureStream(LPVOID pPlayerObject)
 {
     HRESULT hr = S_OK;
-    WAVEFORMATEX *pWfx = NULL;
+
     IAudioRenderClient *pRenderClient = NULL;
     IAudioCaptureClient *pCaptureClient = NULL;
 
@@ -242,35 +243,46 @@ DWORD WINAPI PlayCaptureStream(LPVOID pPlayerObject)
     IAudioClient *pClientIn = pPlayer->m_pClientIn;
     assert(pClientIn != NULL);
 
+    //add by ljm 测试麦克风支持的采样率和通道数2021-11-6
+    //checkMircoPhoneIsOk(pClientIn,pPlayer->m_pDeviceIn,pPlayer->m_hDlg);
+    WAVEFORMATEXTENSIBLE Wfx = checkMircoPhoneIsOkEx(pClientIn, pPlayer->m_pDeviceIn, pPlayer->m_hDlg);
+
+
+    //WAVEFORMATEX* pWfx = NULL;
     // Get the capture stream format. (Later on, remember to free
     // *pWfx by calling CoTaskMemFree.)
-    hr = pClientIn->GetMixFormat(&pWfx);
-    EXIT_ON_ERROR(hr)
-    ULONG frameSize = pWfx->nChannels * pWfx->wBitsPerSample / 8;
+    //hr = pClientIn->GetMixFormat(&pWfx);
+    //EXIT_ON_ERROR(hr)
+    
+
+    ULONG frameSize = Wfx.Format.nChannels * Wfx.Format.wBitsPerSample / 8;
 
 
-    checkMircoPhoneIsOk(pClientIn,pPlayer->m_pDeviceIn,pPlayer->m_hDlg);
-    checkMircoPhoneIsOkEx(pClientIn,pPlayer->m_pDeviceIn,pPlayer->m_hDlg);
+    {//error ERROR_MUI_FILE_NOT_FOUND : 资源加载器找不到 MUI 文件。 
+        // Create a rendering stream with the same format as capture stream.
+        hr = pClientOut->Initialize(AUDCLNT_SHAREMODE_SHARED,  // shared mode
+            0,                         // stream flags
+            bufferDuration,            // buffer duration
+            0,                         // periodicity
+            (WAVEFORMATEX*)&Wfx,                      // wave format
+            NULL);                     // session GUID
+        HRESULT demo = AUDCLNT_E_NOT_INITIALIZED;
+        if (hr == AUDCLNT_E_UNSUPPORTED_FORMAT) {
+            
+        }
+        EXIT_ON_ERROR(hr)
 
-    // Create a rendering stream with the same format as capture stream.
-    hr = pClientOut->Initialize(AUDCLNT_SHAREMODE_SHARED,  // shared mode
-                                0,                         // stream flags
-                                bufferDuration,            // buffer duration
-                                0,                         // periodicity
-                                pWfx,                      // wave format
-                                NULL);                     // session GUID
-    EXIT_ON_ERROR(hr)
-
-    hr = pClientOut->GetService(__uuidof(IAudioRenderClient),
-                                (void**)&pRenderClient);
-    EXIT_ON_ERROR(hr)
+            hr = pClientOut->GetService(__uuidof(IAudioRenderClient),
+                (void**)&pRenderClient);
+        EXIT_ON_ERROR(hr)
+    }
 
     // Create the capture stream.
     hr = pClientIn->Initialize(AUDCLNT_SHAREMODE_SHARED,  // shared mode
                                0,                         // stream flags
                                bufferDuration,            // buffer duration
                                0,                         // periodicity
-                               pWfx,                      // wave format
+        (WAVEFORMATEX*)&Wfx,                      // wave format
                                NULL);                     // session GUID
     EXIT_ON_ERROR(hr)
 
@@ -388,7 +400,7 @@ Exit:
     SAFE_RELEASE(pPlayer->m_pClientOut)
     SAFE_RELEASE(pRenderClient)
     SAFE_RELEASE(pCaptureClient)
-    CoTaskMemFree(pWfx);
+    //CoTaskMemFree(pWfx);
 
     if (pPlayer->m_keepPlaying == TRUE)
     {
