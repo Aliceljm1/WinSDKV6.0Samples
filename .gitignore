@@ -29,6 +29,10 @@
 *.log
 *.tlog
 
+*.dll
+*.exe
+*.exp
+*.ilk
+*.res
+*.lastbuildstate
 
-/bin/*.dll
-/bin/*.exe
