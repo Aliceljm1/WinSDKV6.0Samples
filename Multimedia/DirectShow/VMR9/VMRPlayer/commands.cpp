@@ -395,7 +395,7 @@ ProcessOpen(
             g_TimeFormat = VcdPlayerChangeTimeFormat(g_TimeFormat);
 
             RepositionMovie(hwndApp);
-            pMovie->SetBorderClr(RGB(0x00, 0x80, 0x80));
+            pMovie->SetBorderClr(RGB(0xFF, 0x00, 0x00));// …Ë÷√±≥æ∞—’…´
 
             //  If play
             if(bPlay)

@@ -38,3 +38,4 @@ extern LPDIRECT3DDEVICE9       g_pd3dDevice; // Our rendering device
 extern LPDIRECT3DVERTEXBUFFER9 g_pVB;        // Buffer to hold vertices
 extern LPDIRECT3DTEXTURE9      g_pTexture;   // Our texture
 
+#define IS_YUAN_ZHU //是否使用动态圆柱形顶点显示 add by ljm 2022-5-12

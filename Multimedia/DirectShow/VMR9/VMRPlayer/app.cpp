@@ -1262,17 +1262,17 @@ VideoCd_OnMenuSelect(
 *
 *                 VCD Player buttons enable state table
 * -------------------------------------------------------------------
-* ³E=Enabled D=Disabled      ³ Play ³ Pause ³ Eject ³ Stop  ³ Other ³
+* ³E=Enabled D=Disabled      ?Play ?Pause ?Eject ?Stop  ?Other ?
 * -------------------------------------------------------------------
-* ³Disk in use               ³  D   ³  D    ³  D    ³   D   ³   D   ³
+* ³Disk in use               ? D   ? D    ? D    ?  D   ?  D   ?
 * -------------------------------------------------------------------
-* ³No video cd or data cdrom ³  D   ³  D    ³  E    ³   D   ³   D   ³
+* ³No video cd or data cdrom ? D   ? D    ? E    ?  D   ?  D   ?
 * -------------------------------------------------------------------
-* ³Video cd (playing)        ³  D   ³  E    ³  E    ³   E   ³   E   ³
+* ³Video cd (playing)        ? D   ? E    ? E    ?  E   ?  E   ?
 * -------------------------------------------------------------------
-* ³Video cd (paused)         ³  E   ³  D    ³  E    ³   E   ³   E   ³
+* ³Video cd (paused)         ? E   ? D    ? E    ?  E   ?  E   ?
 * -------------------------------------------------------------------
-* ³Video cd (stopped)        ³  E   ³  D    ³  E    ³   D   ³   E   ³
+* ³Video cd (stopped)        ? E   ? D    ? E    ?  D   ?  E   ?
 * -------------------------------------------------------------------
 *
 *
@@ -1755,7 +1755,7 @@ TransDlgProc(
 
             pos = int(10000 * p->xSize) + 10000;
             hwndT = GetDlgItem(hwnd, IDC_XSIZE_TRK);
-            SendMessage(hwndT, TBM_SETRANGE, TRUE, MAKELONG(0, (WORD)(20000)));
+            SendMessage(hwndT, TBM_SETRANGE, TRUE, MAKELONG(0, (WORD)(30000)));//ÐÞ¸ÄËõ·Å·¶Î§ add by ljm 2022-5-12
             SendMessage(hwndT, TBM_SETPOS, TRUE, (LPARAM)(pos));
             hr = StringCchPrintf(sz, NUMELMS(sz), TEXT("%.3f"), p->xSize);
             SetWindowText(hwndT, sz);
@@ -1763,7 +1763,7 @@ TransDlgProc(
 
             pos = int(10000 * p->ySize) + 10000;
             hwndT = GetDlgItem(hwnd, IDC_YSIZE_TRK);
-            SendMessage(hwndT, TBM_SETRANGE, TRUE, MAKELONG(0, (WORD)(20000)));
+            SendMessage(hwndT, TBM_SETRANGE, TRUE, MAKELONG(0, (WORD)(30000)));
             SendMessage(hwndT, TBM_SETPOS, TRUE, (LPARAM)(pos));
             hr = StringCchPrintf(sz, NUMELMS(sz), TEXT("%.3f"), p->ySize);
             SetWindowText(hwndT, sz);

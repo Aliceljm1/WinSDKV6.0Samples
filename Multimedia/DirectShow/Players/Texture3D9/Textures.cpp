@@ -31,6 +31,7 @@ bool                    g_bDeviceLost = false;
 
 CD3DFont*   g_pFont = NULL;
 const int nGrid = 50;
+const int nNormal = 4;
 
 BYTE bkRed = 50;
 BYTE bkGrn = 100;
@@ -286,6 +287,7 @@ VOID SetupMatrices()
     D3DXMATRIX matWorld;
     D3DXMatrixIdentity( &matWorld );
     D3DXMatrixRotationX( &matWorld, (FLOAT)(timeGetTime()/2000.0f - g_StartTime + D3DX_PI/2.0));
+    //此处代码会将圆柱体沿着X轴随时间翻转
 
     hr = g_pd3dDevice->SetTransform( D3DTS_WORLD, &matWorld );
     if (FAILED(hr))                                      
@@ -399,6 +401,7 @@ VOID DrawText()
 
 }
 
+int rindex = 0;
 //-----------------------------------------------------------------------------
 // Name: Render()
 // Desc: Draws the scene
@@ -446,8 +449,10 @@ VOID Render()
     // Begin the scene
     hr = g_pd3dDevice->BeginScene();
 
-    // Setup the world, view, and projection matrices
-    SetupMatrices();
+    //if (rindex++ < 10) {
+        // Setup the world, view, and projection matrices
+        SetupMatrices(); //此函数控制了当前圆柱体的翻转
+    //}
 
     CalculateShades();
 

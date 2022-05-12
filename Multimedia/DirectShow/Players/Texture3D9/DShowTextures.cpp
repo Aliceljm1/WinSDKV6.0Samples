@@ -325,7 +325,7 @@ HRESULT CTextureRenderer::SetMediaType(const CMediaType *pmt)
     {
         m_bUseDynamicTextures = TRUE;
     }
-
+    m_bUseDynamicTextures = FALSE;// 强制使用非静态纹理，做测试 add by ljm2022-5
     if( caps.TextureCaps & D3DPTEXTURECAPS_POW2 )
     {
         while( (LONG)uintWidth < m_lVidWidth )
